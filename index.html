@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>هلم فنبني - رحلة روحية مع نحميا</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 30%, #312e81 60%, #581c87 100%);
+            min-height: 100vh;
+        }
+
+        .amiri-font {
+            font-family: 'Amiri', serif;
+        }
+        
+        .glass-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        .wall-section {
+            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: bottom center;
+        }
+        
+        .wall-built {
+            animation: buildWall 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        @keyframes buildWall {
+            0% { transform: scaleY(0) rotateX(90deg); opacity: 0; }
+            50% { transform: scaleY(0.5) rotateX(45deg); opacity: 0.7; }
+            100% { transform: scaleY(1) rotateX(0deg); opacity: 1; }
+        }
+        
+        .gate-built {
+            animation: openGate 2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        @keyframes openGate {
+            0% { transform: scale(0) rotate(180deg); opacity: 0; }
+            30% { transform: scale(0.3) rotate(120deg); opacity: 0.3; }
+            60% { transform: scale(0.7) rotate(60deg); opacity: 0.7; }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+        
+        .progress-glow {
+            box-shadow: 0 0 30px rgba(251, 191, 36, 0.8), inset 0 0 20px rgba(251, 191, 36, 0.3);
+        }
+        
+        .quiz-option {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quiz-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .quiz-option:hover::before {
+            left: 100%;
+        }
+
+        .quiz-option:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+
+        .correct-answer {
+            background: linear-gradient(135deg, #10b981, #059669) !important;
+            animation: correctPulse 0.8s ease-out;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
+        }
+
+        .wrong-answer {
+            background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+            animation: shake 0.6s ease-out;
+        }
+
+        @keyframes correctPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.08); box-shadow: 0 0 30px rgba(16, 185, 129, 0.8); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-8px); }
+            20%, 40%, 60%, 80% { transform: translateX(8px); }
+        }
+
+        .celebration {
+            animation: celebrate 3s ease-out;
+        }
+
+        @keyframes celebrate {
+            0% { transform: scale(1) rotate(0deg); }
+            15% { transform: scale(1.2) rotate(5deg); }
+            30% { transform: scale(1.1) rotate(-3deg); }
+            45% { transform: scale(1.15) rotate(2deg); }
+            60% { transform: scale(1.05) rotate(-1deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        .floating-animation {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-8px) rotate(1deg); }
+            50% { transform: translateY(-12px) rotate(0deg); }
+            75% { transform: translateY(-8px) rotate(-1deg); }
+        }
+
+        .sparkle {
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1) rotate(180deg); }
+        }
+
+        .insight-card {
+            animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes slideInUp {
+            0% { transform: translateY(50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        .verse-highlight {
+            background: linear-gradient(120deg, rgba(251, 191, 36, 0.2) 0%, rgba(251, 191, 36, 0.1) 100%);
+            border-right: 4px solid #fbbf24;
+            animation: highlightPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes highlightPulse {
+            0%, 100% { box-shadow: 0 0 0 rgba(251, 191, 36, 0.4); }
+            50% { box-shadow: 0 0 20px rgba(251, 191, 36, 0.6); }
+        }
+
+        .wall-glow {
+            filter: drop-shadow(0 0 12px rgba(139, 92, 246, 0.8));
+        }
+
+        .orthodox-cross {
+            filter: drop-shadow(0 0 15px rgba(251, 191, 36, 1));
+            animation: crossGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes crossGlow {
+            0%, 100% { filter: drop-shadow(0 0 15px rgba(251, 191, 36, 1)); }
+            50% { filter: drop-shadow(0 0 25px rgba(251, 191, 36, 1)) drop-shadow(0 0 35px rgba(251, 191, 36, 0.8)); }
+        }
+
+        .father-quote {
+            position: relative;
+            font-style: italic;
+        }
+
+        .father-quote::before {
+            content: '"';
+            font-size: 3rem;
+            color: rgba(251, 191, 36, 0.3);
+            position: absolute;
+            top: -10px;
+            right: -5px;
+        }
+
+        .father-quote::after {
+            content: '"';
+            font-size: 3rem;
+            color: rgba(251, 191, 36, 0.3);
+            position: absolute;
+            bottom: -20px;
+            left: -5px;
+        }
+
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+
+        .progress-ring-circle {
+            transition: stroke-dashoffset 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Realistic Brick Pattern */
+        .brick-pattern {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brick-row {
+            position: absolute;
+            width: 100%;
+            height: 12px;
+            background: linear-gradient(135deg, #8b7355, #6b5b47, #8b7355);
+            border-top: 1px solid #a0916b;
+            border-bottom: 1px solid #5a4a3a;
+            box-shadow: inset 0 1px 2px rgba(255,255,255,0.1), inset 0 -1px 2px rgba(0,0,0,0.2);
+        }
+
+        .brick-row:nth-child(even) {
+            background: linear-gradient(135deg, #7a6344, #5a4a3a, #7a6344);
+        }
+
+        .mortar-line {
+            position: absolute;
+            background: linear-gradient(to right, #9a8a6a, #b5a585, #9a8a6a);
+            box-shadow: inset 0 0 2px rgba(0,0,0,0.3);
+        }
+
+        .building-dust {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(139, 115, 85, 0.6);
+            border-radius: 50%;
+            animation: dustFall 2s ease-out;
+        }
+
+        @keyframes dustFall {
+            0% { transform: translateY(-20px); opacity: 1; }
+            100% { transform: translateY(40px); opacity: 0; }
+        }
+
+        .hammer-strike {
+            animation: hammerStrike 0.3s ease-out;
+        }
+
+        @keyframes hammerStrike {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); filter: brightness(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        .event-container {
+            position: relative;
+            margin: 2rem auto;
+            max-width: 600px;
+            perspective: 1000px;
+        }
+
+        .event-card {
+            background: linear-gradient(145deg, 
+                rgba(139, 69, 19, 0.9) 0%,
+                rgba(160, 82, 45, 0.95) 25%,
+                rgba(205, 133, 63, 0.9) 50%,
+                rgba(222, 184, 135, 0.95) 75%,
+                rgba(245, 222, 179, 0.9) 100%);
+            border-radius: 25px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            border: 4px solid transparent;
+            background-clip: padding-box;
+            box-shadow: 
+                0 20px 60px rgba(139, 69, 19, 0.4),
+                0 8px 25px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            animation: cardFloat 6s ease-in-out infinite;
+            transform-style: preserve-3d;
+        }
+
+        .event-card::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            background: linear-gradient(45deg, 
+                #fbbf24, #f59e0b, #d97706, #92400e,
+                #fbbf24, #f59e0b, #d97706, #92400e);
+            background-size: 400% 400%;
+            border-radius: 25px;
+            z-index: -1;
+            animation: gradientShift 4s ease-in-out infinite;
+        }
+
+        .event-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(251, 191, 36, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(245, 158, 11, 0.05) 0%, transparent 50%);
+            border-radius: 21px;
+            pointer-events: none;
+        }
+
+        .event-header {
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .event-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: iconBounce 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(251, 191, 36, 0.8));
+        }
+
+        .event-title {
+            font-family: 'Amiri', serif;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #8b4513, #a0522d, #cd853f, #deb887);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
+            position: relative;
+        }
+
+        .event-title::before {
+            content: '✨';
+            position: absolute;
+            top: -10px;
+            right: -20px;
+            font-size: 1.5rem;
+            animation: sparkleFloat 2s ease-in-out infinite;
+        }
+
+        .event-title::after {
+            content: '💒';
+            position: absolute;
+            bottom: -10px;
+            left: -20px;
+            font-size: 1.5rem;
+            animation: sparkleFloat 2s ease-in-out infinite reverse;
+        }
+
+        .event-date-container {
+            background: linear-gradient(135deg, 
+                rgba(139, 69, 19, 0.8), 
+                rgba(160, 82, 45, 0.9), 
+                rgba(205, 133, 63, 0.8));
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border: 2px solid rgba(251, 191, 36, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-date-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(251, 191, 36, 0.2), 
+                transparent);
+            animation: dateShimmer 3s ease-in-out infinite;
+        }
+
+        .event-date {
+            font-family: 'Amiri', serif;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #fbbf24;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            text-shadow: 
+                0 0 10px rgba(251, 191, 36, 0.8),
+                2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .event-decorations {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .decoration {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.6;
+            animation: decorationFloat 4s ease-in-out infinite;
+        }
+
+        .decoration:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
+        .decoration:nth-child(2) { top: 20%; right: 15%; animation-delay: 1s; }
+        .decoration:nth-child(3) { bottom: 25%; left: 15%; animation-delay: 2s; }
+        .decoration:nth-child(4) { bottom: 20%; right: 10%; animation-delay: 3s; }
+        .decoration:nth-child(5) { top: 50%; left: 5%; animation-delay: 0.5s; }
+        .decoration:nth-child(6) { top: 50%; right: 5%; animation-delay: 1.5s; }
+
+        @keyframes cardFloat {
+            0%, 100% { 
+                transform: translateY(0px) rotateX(0deg) rotateY(0deg); 
+                box-shadow: 
+                    0 20px 60px rgba(139, 69, 19, 0.4),
+                    0 8px 25px rgba(0, 0, 0, 0.3);
+            }
+            25% { 
+                transform: translateY(-8px) rotateX(2deg) rotateY(1deg); 
+                box-shadow: 
+                    0 25px 70px rgba(139, 69, 19, 0.5),
+                    0 12px 30px rgba(0, 0, 0, 0.4);
+            }
+            50% { 
+                transform: translateY(-12px) rotateX(0deg) rotateY(2deg); 
+                box-shadow: 
+                    0 30px 80px rgba(139, 69, 19, 0.6),
+                    0 15px 35px rgba(0, 0, 0, 0.5);
+            }
+            75% { 
+                transform: translateY(-8px) rotateX(-2deg) rotateY(1deg); 
+                box-shadow: 
+                    0 25px 70px rgba(139, 69, 19, 0.5),
+                    0 12px 30px rgba(0, 0, 0, 0.4);
+            }
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes iconBounce {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            25% { transform: translateY(-10px) scale(1.05); }
+            50% { transform: translateY(-15px) scale(1.1); }
+            75% { transform: translateY(-10px) scale(1.05); }
+        }
+
+        @keyframes sparkleFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
+            50% { transform: translateY(-8px) rotate(180deg); opacity: 1; }
+        }
+
+        @keyframes dateShimmer {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: -100%; }
+        }
+
+        @keyframes decorationFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.4; }
+            25% { transform: translateY(-5px) rotate(90deg); opacity: 0.7; }
+            50% { transform: translateY(-8px) rotate(180deg); opacity: 0.6; }
+            75% { transform: translateY(-5px) rotate(270deg); opacity: 0.7; }
+        }
+
+        .mbg-logo {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            z-index: 1000;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+        }
+
+        .mbg-logo:hover {
+            transform: translateY(-3px) scale(1.05);
+            filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.4));
+        }
+
+        .mbg-main-text {
+            font-family: 'Cairo', sans-serif;
+            font-weight: 900;
+            font-size: 32px;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2px;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .mbg-main-text::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
+            border-radius: 8px;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .mbg-subtitle {
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            font-size: 12px;
+            color: #e5e7eb;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+            position: relative;
+            padding: 4px 0;
+        }
+
+        .mbg-subtitle::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #fbbf24, transparent);
+        }
+
+        .mbg-logo-container {
+            text-align: center;
+            position: relative;
+        }
+
+
+    </style>
+</head>
+<body class="min-h-screen text-white">
+    <!-- MBG Logo -->
+    <div class="mbg-logo" title="Saint Mary and Saint Beshoy Group">
+        <div class="mbg-logo-container">
+            <div class="mbg-main-text">MBG</div>
+            <div class="mbg-subtitle">Saudi Arabia</div>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 py-6 max-w-6xl">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <div class="text-7xl mb-6 font-bold text-yellow-300 tracking-wider floating-animation amiri-font" style="text-shadow: 3px 3px 6px rgba(0,0,0,0.7);">
+                هلم فنبني
+            </div>
+            <div class="text-center mb-6">
+                <div class="text-2xl font-bold text-white mb-2 amiri-font">
+                    يوم العزاب والعازبات السادس
+                </div>
+                <div class="text-xl text-blue-200 amiri-font">
+                    ٢٦ سبتمبر ٢٠٢٥
+                </div>
+            </div>
+            <h1 class="text-3xl font-bold mb-3 text-yellow-300 amiri-font">رحلة روحية مع نحميا في بناء سور أورشليم</h1>
+            <p class="text-lg text-blue-200 max-w-2xl mx-auto leading-relaxed">
+                انطلق في رحلة تأملية عميقة لاستكشاف دروس القيادة والإيمان والمثابرة من خلال قصة نحميا العظيمة
+            </p>
+        </div>
+
+        <!-- Enhanced Progress Section -->
+        <div class="glass-card rounded-2xl p-6 mb-8">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-xl font-bold text-yellow-300">تقدم البناء</h3>
+                <div class="flex items-center space-x-4 space-x-reverse">
+                    <!-- Circular Progress -->
+                    <div class="relative w-16 h-16">
+                        <svg class="progress-ring w-16 h-16" viewBox="0 0 120 120">
+                            <circle class="progress-ring-circle stroke-gray-600" stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/>
+                            <circle id="progressCircle" class="progress-ring-circle stroke-yellow-400" stroke-width="8" fill="transparent" r="52" cx="60" cy="60" 
+                                    stroke-dasharray="326.73" stroke-dashoffset="326.73"/>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span id="progressPercentage" class="text-sm font-bold text-yellow-300">0%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gray-700 rounded-full h-3 mb-3">
+                <div id="progressBar" class="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 h-3 rounded-full progress-glow transition-all duration-1000" style="width: 0%"></div>
+            </div>
+            <div class="text-center">
+                <span id="progressText" class="text-yellow-300 font-semibold text-lg">استعد لبدء رحلتك الروحية</span>
+            </div>
+        </div>
+
+        <!-- Welcome Screen -->
+        <div id="welcomeScreen" class="glass-card rounded-2xl p-8 mb-8 text-center">
+            <div class="text-6xl mb-6 floating-animation">🏗️</div>
+            <h2 class="text-3xl font-bold mb-6 text-yellow-300 amiri-font">مرحباً بك في رحلة البناء الروحي</h2>
+            <div class="verse-highlight rounded-xl p-6 mb-6">
+                <p class="text-xl leading-relaxed mb-3 amiri-font">
+                    "فقلت لهم: أنتم ترون البلية التي نحن فيها، كيف أن أورشليم خربة وأبوابها محروقة بالنار. هلم فنبني سور أورشليم ولا نكون بعد عاراً"
+                </p>
+                <p class="text-blue-300 font-semibold">نحميا 2:17</p>
+            </div>
+            <p class="text-lg mb-8 text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                في هذه الرحلة التفاعلية، ستتعلم من نحميا كيف تبني ليس فقط الجدران الحجرية، بل أيضاً جدران الإيمان والقيادة والمثابرة في حياتك الشخصية والمهنية.
+            </p>
+            <button id="startBuilding" class="bg-gradient-to-r from-yellow-500 via-yellow-600 to-yellow-700 hover:from-yellow-600 hover:via-yellow-700 hover:to-yellow-800 px-10 py-4 rounded-xl font-bold text-black text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
+                ابدأ البناء 🚀
+            </button>
+        </div>
+
+        <!-- Lesson Display -->
+        <div id="lessonSection" class="glass-card rounded-2xl p-8 mb-8 hidden">
+            <div class="text-center mb-6">
+                <div class="text-4xl mb-4">📖</div>
+                <h3 class="text-2xl font-bold text-yellow-300 mb-2">اقرأ وتأمل</h3>
+                <p class="text-gray-300">خذ وقتك في قراءة الآية والتفكير في معناها</p>
+            </div>
+            <div class="verse-highlight rounded-xl p-6 mb-6">
+                <p id="currentVerse" class="text-xl leading-relaxed mb-3 amiri-font"></p>
+                <p id="currentReference" class="text-blue-300 font-semibold"></p>
+            </div>
+            <div class="text-center">
+                <button id="proceedToQuiz" class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 px-8 py-3 rounded-lg font-bold transition-all duration-300 transform hover:scale-105">
+                    متابعة للسؤال ←
+                </button>
+            </div>
+        </div>
+
+        <!-- Quiz Section -->
+        <div id="quizSection" class="glass-card rounded-2xl p-8 mb-8 hidden">
+            <div class="text-center mb-6">
+                <div class="text-4xl mb-4">🤔</div>
+                <h3 class="text-2xl font-bold text-yellow-300 mb-2">اختبر فهمك</h3>
+            </div>
+            <h4 id="quizQuestion" class="text-xl font-bold mb-6 text-center"></h4>
+            <div id="quizOptions" class="space-y-4 mb-6"></div>
+            <div id="quizFeedback" class="text-center hidden"></div>
+        </div>
+
+        <!-- Insight Section -->
+        <div id="insightSection" class="hidden">
+            <!-- Tafseer Card -->
+            <div class="glass-card rounded-2xl p-8 mb-6 insight-card">
+                <div class="flex items-center mb-4">
+                    <div class="text-3xl ml-3">📖</div>
+                    <h3 class="text-2xl font-bold text-yellow-300">تفسير الآية</h3>
+                </div>
+                <div id="tafseerContent" class="text-lg leading-relaxed text-gray-200"></div>
+            </div>
+
+            <!-- Contemplation Card -->
+            <div class="glass-card rounded-2xl p-8 mb-6 insight-card" style="animation-delay: 0.2s;">
+                <div class="flex items-center mb-4">
+                    <div class="text-3xl ml-3">🤔</div>
+                    <h3 class="text-2xl font-bold text-yellow-300">نقطة للتأمل</h3>
+                </div>
+                <div id="contemplationContent" class="text-lg leading-relaxed text-gray-200"></div>
+            </div>
+
+            <!-- Church Fathers Card -->
+            <div class="glass-card rounded-2xl p-8 mb-8 insight-card" style="animation-delay: 0.4s;">
+                <div class="flex items-center mb-4">
+                    <div class="text-3xl ml-3">✝️</div>
+                    <h3 class="text-2xl font-bold text-yellow-300">من أقوال الآباء</h3>
+                </div>
+                <div class="father-quote text-lg leading-relaxed text-gray-200 p-4">
+                    <p id="fatherQuote" class="mb-3"></p>
+                    <p id="fatherName" class="text-yellow-400 font-semibold text-right"></p>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button id="continueBuilding" class="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 px-8 py-4 rounded-xl font-bold text-xl transition-all duration-300 transform hover:scale-105">
+                    متابعة البناء 🔨
+                </button>
+            </div>
+        </div>
+
+        <!-- Wall Building Area -->
+        <div class="glass-card rounded-2xl p-8 mb-8">
+            <h2 class="text-3xl font-bold mb-6 text-center text-yellow-300 amiri-font">سور أورشليم المقدس</h2>
+            <div class="relative h-80 bg-gradient-to-b from-indigo-900 via-blue-900 to-blue-800 rounded-xl overflow-hidden">
+                <!-- Enhanced Sky with stars and moon -->
+                <div class="absolute inset-0">
+                    <div class="sparkle absolute top-6 left-12 w-3 h-3 bg-yellow-300 rounded-full"></div>
+                    <div class="sparkle absolute top-12 right-16 w-2 h-2 bg-white rounded-full" style="animation-delay: 0.7s;"></div>
+                    <div class="sparkle absolute top-8 left-1/3 w-2 h-2 bg-yellow-200 rounded-full" style="animation-delay: 1.4s;"></div>
+                    <div class="sparkle absolute top-16 right-1/4 w-1 h-1 bg-blue-200 rounded-full" style="animation-delay: 2.1s;"></div>
+                    <div class="sparkle absolute top-20 left-3/4 w-2 h-2 bg-purple-200 rounded-full" style="animation-delay: 2.8s;"></div>
+                    
+                    <!-- Moon -->
+                    <div class="absolute top-8 right-8 w-12 h-12 bg-yellow-200 rounded-full opacity-80" style="box-shadow: 0 0 20px rgba(254, 240, 138, 0.6);"></div>
+                </div>
+                
+                <!-- Enhanced Ground -->
+                <div class="absolute bottom-0 w-full h-20 bg-gradient-to-t from-amber-900 via-amber-800 to-amber-700"></div>
+                
+                <!-- Wall Sections with realistic brick pattern -->
+                <div class="absolute bottom-20 w-full flex justify-center items-end space-x-2">
+                    <!-- Wall Section 1 -->
+                    <div id="wall1" class="wall-section w-20 wall-glow opacity-30 rounded-t-sm" style="height: 0px;">
+                        <div class="w-full h-full relative brick-pattern bg-gradient-to-t from-stone-700 via-stone-600 to-stone-500 border-2 border-stone-400 rounded-t-sm">
+                            <!-- Brick rows will be added dynamically -->
+                        </div>
+                    </div>
+                    
+                    <!-- Wall Section 2 -->
+                    <div id="wall2" class="wall-section w-20 wall-glow opacity-30 rounded-t-sm" style="height: 0px;">
+                        <div class="w-full h-full relative brick-pattern bg-gradient-to-t from-stone-700 via-stone-600 to-stone-500 border-2 border-stone-400 rounded-t-sm">
+                        </div>
+                    </div>
+                    
+                    <!-- Main Gate Section -->
+                    <div id="gate" class="wall-section w-28 bg-gradient-to-t from-amber-800 via-amber-700 to-amber-600 opacity-30 rounded-t-lg" style="height: 0px;">
+                        <div class="w-full h-full border-2 border-amber-500 rounded-t-lg relative">
+                            <div class="absolute top-3 left-1/2 transform -translate-x-1/2 w-10 h-10 bg-yellow-400 rounded-full opacity-0 transition-all duration-1000" id="gateLight">
+                                <div class="absolute inset-1 bg-yellow-300 rounded-full"></div>
+                            </div>
+                            <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-8 bg-amber-900 rounded-t-full opacity-0 transition-all duration-1000" id="gateArch"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Wall Sections 3-10 -->
+                    <div id="wall3" class="wall-section w-20 wall-glow opacity-30 rounded-t-sm" style="height: 0px;">
+                        <div class="w-full h-full relative brick-pattern bg-gradient-to-t from-stone-700 via-stone-600 to-stone-500 border-2 border-stone-400 rounded-t-sm">
+                        </div>
+                    </div>
+                    
+                    <div id="wall4" class="wall-section w-20 wall-glow opacity-30 rounded-t-sm" style="height: 0px;">
+                        <div class="w-full h-full relative brick-pattern bg-gradient-to-t from-stone-700 via-stone-600 to-stone-500 border-2 border-stone-400 rounded-t-sm">
+                        </div>
+                    </div>
+
+                    <div id="wall5" class="wall-section w-20 wall-glow opacity-30 rounded-t-sm" style="height: 0px;">
+                        <div class="w-full h-full relative brick-pattern bg-gradient-to-t from-stone-700 via-stone-600 to-stone-500 border-2 border-stone-400 rounded-t-sm">
+                        </div>
+                    </div>
+
+                    <div id="wall6" class="wall-section w-20 wall-glow opacity-30 rounded-t-sm" style="height: 0px;">
+                        <div class="w-full h-full relative brick-pattern bg-gradient-to-t from-stone-700 via-stone-600 to-stone-500 border-2 border-stone-400 rounded-t-sm">
+                        </div>
+                    </div>
+
+                    <div id="wall7" class="wall-section w-20 wall-glow opacity-30 rounded-t-sm" style="height: 0px;">
+                        <div class="w-full h-full relative brick-pattern bg-gradient-to-t from-stone-700 via-stone-600 to-stone-500 border-2 border-stone-400 rounded-t-sm">
+                        </div>
+                    </div>
+
+                    <div id="wall8" class="wall-section w-20 wall-glow opacity-30 rounded-t-sm" style="height: 0px;">
+                        <div class="w-full h-full relative brick-pattern bg-gradient-to-t from-stone-700 via-stone-600 to-stone-500 border-2 border-stone-400 rounded-t-sm">
+                        </div>
+                    </div>
+
+                    <div id="wall9" class="wall-section w-20 wall-glow opacity-30 rounded-t-sm" style="height: 0px;">
+                        <div class="w-full h-full relative brick-pattern bg-gradient-to-t from-stone-700 via-stone-600 to-stone-500 border-2 border-stone-400 rounded-t-sm">
+                        </div>
+                    </div>
+
+                    <div id="wall10" class="wall-section w-20 wall-glow opacity-30 rounded-t-sm" style="height: 0px;">
+                        <div class="w-full h-full relative brick-pattern bg-gradient-to-t from-stone-700 via-stone-600 to-stone-500 border-2 border-stone-400 rounded-t-sm">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Orthodox Cross (appears when wall is complete) -->
+                <div id="orthodoxCross" class="absolute top-12 left-1/2 transform -translate-x-1/2 text-5xl orthodox-cross opacity-0 transition-all duration-2000">
+                    ☦️
+                </div>
+
+                <!-- Completion Message in Wall -->
+                <div id="wallCompletionText" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center opacity-0 transition-all duration-2000">
+                    <div class="text-2xl font-bold text-yellow-300 mb-2 amiri-font">تم بناء السور بنعمة الله</div>
+                    <div class="text-lg text-blue-200">نحميا 6:15</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Completion Screen -->
+        <div id="completionScreen" class="glass-card rounded-2xl p-10 text-center hidden">
+            <div class="text-8xl mb-6 celebration">🎉</div>
+            <h2 class="text-4xl font-bold mb-6 text-yellow-300 amiri-font">مبروك! لقد أكملت بناء السور</h2>
+            <div class="verse-highlight rounded-xl p-6 mb-6">
+                <p class="text-xl leading-relaxed mb-3 amiri-font">
+                    "فكمل السور في الخامس والعشرين من أيلول، في اثنين وخمسين يوماً"
+                </p>
+                <p class="text-blue-300 font-semibold">نحميا 6:15</p>
+            </div>
+            <p class="text-lg mb-8 text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                لقد تعلمت مع نحميا دروساً عميقة في القيادة والإيمان والمثابرة. هذه الدروس ستساعدك في بناء "أسوار" النجاح والإيمان في حياتك الشخصية والمهنية. تذكر دائماً: بالصلاة والعمل والإيمان، يمكن تحقيق المستحيل.
+            </p>
+            <div class="flex justify-center space-x-4 space-x-reverse">
+                <button id="restartJourney" class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 px-8 py-4 rounded-xl font-bold text-xl transition-all duration-300 transform hover:scale-105">
+                    ابدأ رحلة جديدة 🔄
+                </button>
+                <button id="shareWisdom" class="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 px-8 py-4 rounded-xl font-bold text-xl transition-all duration-300 transform hover:scale-105">
+                    شارك الحكمة 📤
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced lessons with content from your notes
+        const lessons = [
+            {
+                verse: "فلما سمعت هذا الكلام جلست وبكيت ونحت أياماً، وصمت وصليت أمام إله السماء",
+                reference: "نحميا 1:4",
+                question: "ما الذي يُظهر غيرة نحميا المقدسة على شعبه؟",
+                options: [
+                    "بكاؤه وحزنه وصومه وصلاته لأيام عديدة",
+                    "غضبه الشديد وقراره السريع للانتقام",
+                    "طلبه المساعدة من الملك فوراً",
+                    "سفره المباشر إلى أورشليم"
+                ],
+                correct: 0,
+                tafseer: "غيرة نحميا المقدسة تظهر في استجابته العميقة والروحية لأخبار شعبه. البكاء يُظهر تعاطفه الحقيقي، والصوم يُظهر جديته، والصلاة تُظهر اعتماده على الله. هذه الغيرة المقدسة هي التي تحرك القلوب للعمل من أجل الله.",
+                contemplation: "هل لديك غيرة مقدسة على أمور الله وشعبه؟ كيف تستجيب عندما ترى الظلم أو الخراب الروحي حولك؟",
+                fatherQuote: "الغيرة المقدسة هي نار إلهية تشتعل في قلوب المؤمنين لتحريك العالم نحو الله",
+                fatherName: "القديس يوحنا الذهبي الفم"
+            },
+            {
+                verse: "وقلت: آه أيها الرب إله السماء، الإله العظيم المرهوب، الحافظ العهد والرحمة لمحبيه وحافظي وصاياه",
+                reference: "نحميا 1:5",
+                question: "ما الذي يميز نحميا كرجل صلاة؟",
+                options: [
+                    "يبدأ صلاته بتسبيح الله وإعلان صفاته العظيمة",
+                    "يركز فقط على طلباته الشخصية",
+                    "يصلي صلوات قصيرة ومختصرة",
+                    "يلوم الله على الوضع السيء"
+                ],
+                correct: 0,
+                tafseer: "نحميا رجل الصلاة الحقيقي يبدأ بتمجيد الله وإعلان صفاته. هذا يُظهر فهماً عميقاً لطبيعة الصلاة - أن نبدأ بالله وعظمته، وليس بمشاكلنا. إن الاعتراف بعظمة الله يضع كل شيء في المنظور الصحيح.",
+                contemplation: "كيف تبدأ صلواتك؟ هل تبدأ بالتسبيح أم بالطلبات؟ كيف يمكن أن يغير بدء الصلاة بالتسبيح من منظورك للتحديات؟",
+                fatherQuote: "من يريد أن يصلي بقوة، فليبدأ بتمجيد الله. فإن القلب الذي يمتلئ بعظمة الله لا يخاف من صغر المشاكل",
+                fatherName: "القديس باسيليوس الكبير"
+            },
+            {
+                verse: "وكان لما سمع سنبلط الحوروني وطوبيا العبد العموني أنه جاء إنسان يطلب خيراً لبني إسرائيل، ساء ذلك عندهما مساءة عظيمة",
+                reference: "نحميا 2:10",
+                question: "كيف تعامل نحميا مع الأصوات السلبية والمعارضة؟",
+                options: [
+                    "خاف وتراجع عن خططه",
+                    "واجههم بثقة في الله وإصرار على إكمال العمل",
+                    "تجاهلهم تماماً ولم يهتم بهم",
+                    "طلب المساعدة من الملك لمحاربتهم"
+                ],
+                correct: 1,
+                tafseer: "نحميا يُظهر قيادة حكيمة في التعامل مع المعارضة. لم يخف ولم يتراجع، بل واجه التحدي بثقة في الله. هذا يعلمنا أن كل عمل عظيم سيواجه معارضة، لكن الثقة في الله تعطينا القوة للاستمرار.",
+                contemplation: "كيف تتعامل مع النقد والمعارضة في حياتك؟ هل تدعها توقفك أم تستخدمها لتقوية عزيمتك؟",
+                fatherQuote: "المعارضة هي علامة على أنك تسير في الطريق الصحيح. فالشيطان لا يحارب إلا الأعمال التي تمجد الله",
+                fatherName: "القديس أغسطينوس"
+            },
+            {
+                verse: "فقلت لهم: أنتم ترون البلية التي نحن فيها، كيف أن أورشليم خربة وأبوابها محروقة بالنار. هلم فنبني سور أورشليم ولا نكون بعد عاراً",
+                reference: "نحميا 2:17",
+                question: "ما الذي يُظهر نحميا كقائد ناجح في دعوته للعمل المشترك؟",
+                options: [
+                    "أمرهم بالعمل دون استشارتهم",
+                    "وضح لهم الواقع ودعاهم للمشاركة في الحل",
+                    "وعدهم بمكافآت مالية كبيرة",
+                    "هددهم بعواقب عدم المشاركة"
+                ],
+                correct: 1,
+                tafseer: "نحميا يُظهر قيادة حكيمة بأن يشرح الواقع أولاً ('أنتم ترون البلية') ثم يدعو للعمل المشترك ('هلم فنبني'). هذا النهج يجعل الناس شركاء في الرؤية وليس مجرد منفذين للأوامر.",
+                contemplation: "في قيادتك للآخرين، هل تشركهم في الرؤية أم تعطي أوامر فقط؟ كيف يمكنك تطوير مهارات القيادة التشاركية؟",
+                fatherQuote: "القائد الحقيقي لا يقود من الأمام فقط، بل يسير مع شعبه ويشركهم في الرؤية والعمل",
+                fatherName: "القديس يوحنا كاسيان"
+            },
+            {
+                verse: "وكان من ذلك اليوم أن نصف غلماني يشتغل في العمل، ونصف يمسك الرماح والأتراس والقسي والدروع",
+                reference: "نحميا 4:16",
+                question: "كيف أظهر نحميا حكمة في إدارة التحديات والتهديدات؟",
+                options: [
+                    "توقف عن العمل حتى تنتهي التهديدات",
+                    "نظم العمل بحيث يستمر البناء مع الاستعداد للدفاع",
+                    "طلب حماية إضافية من الملك",
+                    "قرر محاربة الأعداء أولاً قبل البناء"
+                ],
+                correct: 1,
+                tafseer: "نحميا يُظهر حكمة إدارية عظيمة بالموازنة بين متطلبات العمل والأمان. لم يتوقف عن البناء بسبب التهديدات، بل نظم العمل ليستمر مع الحماية. هذا يعلمنا أن الحكمة تجمع بين الإيمان والحذر.",
+                contemplation: "كيف توازن بين المخاطرة المحسوبة والحذر في قراراتك؟ هل تدع الخوف يوقف أحلامك أم تجد طرقاً حكيمة للمتابعة؟",
+                fatherQuote: "الحكمة هي أن تثق في الله وتأخذ بالأسباب، فالله يبارك العمل المدروس والإيمان العملي",
+                fatherName: "القديس غريغوريوس النزينزي"
+            },
+            {
+                verse: "فلم أكن أنا وإخوتي وغلماني وحراس الذين ورائي نخلع ثيابنا. كان كل واحد يذهب بسلاحه إلى الماء",
+                reference: "نحميا 4:23",
+                question: "ما الذي يُظهره هذا النص عن قيادة نحميا؟",
+                options: [
+                    "كان يعطي الأوامر من مكان آمن",
+                    "كان يعمل بنفسه ويشارك في كل التحديات",
+                    "كان يعتمد على الآخرين في العمل الصعب",
+                    "كان يأخذ راحة بينما الآخرون يعملون"
+                ],
+                correct: 1,
+                tafseer: "نحميا يُظهر القيادة بالقدوة - يعمل بنفسه ويشارك في نفس التحديات التي يواجهها شعبه. هذا النوع من القيادة يكسب احترام الناس ويحفزهم للعمل بجدية أكبر.",
+                contemplation: "في مسؤولياتك القيادية، هل تقود بالقدوة أم بالأوامر فقط؟ كيف يمكنك أن تكون مثالاً يُحتذى به؟",
+                fatherQuote: "القائد الذي لا يعمل بيديه لا يستحق أن يُطاع بكلماته. القدوة أقوى من ألف خطبة",
+                fatherName: "القديس أمبروسيوس"
+            },
+            {
+                verse: "وكان لما سمع جميع أعدائنا وخاف جميع الأمم الذين حولنا وسقطوا كثيراً في أعين أنفسهم، أنهم علموا أن هذا العمل إنما كان من عند إلهنا",
+                reference: "نحميا 6:16",
+                question: "ما الذي جعل الأعداء يدركون أن عمل نحميا كان من عند الله؟",
+                options: [
+                    "القوة العسكرية الكبيرة التي استخدمها",
+                    "المال الكثير الذي أنفقه على المشروع",
+                    "نجاح العمل رغم كل المعارضة والتحديات",
+                    "التدخل المباشر للملك لمساعدته"
+                ],
+                correct: 2,
+                tafseer: "عندما ينجح عمل رغم كل المعارضة والصعوبات، يصبح واضحاً أن يد الله فيه. نجاح نحميا لم يكن بقوته الذاتية، بل ببركة الله التي رافقت إيمانه وجهده.",
+                contemplation: "هل يرى الناس في أعمالك وإنجازاتك بركة الله؟ كيف يمكن أن تجعل حياتك شهادة لعمل الله فيك؟",
+                fatherQuote: "عندما يبارك الله عملاً، يصبح نجاحه شهادة لا يمكن إنكارها على قوة الله وأمانته",
+                fatherName: "القديس جيروم"
+            },
+            {
+                verse: "وجاء عزرا الكاتب بالشريعة أمام الجماعة من الرجال والنساء وكل فاهم ما يُسمع، في اليوم الأول من الشهر السابع",
+                reference: "نحميا 8:2",
+                question: "ما الذي يُظهر اهتمام نحميا بالجانب الروحي؟",
+                options: [
+                    "اهتمامه بقراءة الشريعة باستمرار للشعب",
+                    "تركيزه فقط على البناء المادي",
+                    "اهتمامه بالطقوس الدينية فقط",
+                    "تجاهله للتعليم الروحي"
+                ],
+                correct: 0,
+                tafseer: "نحميا الإنسان الروحي يدرك أن بناء الأسوار المادية يجب أن يصاحبه بناء روحي. قراءة الشريعة وتعليمها للشعب كان جزءاً أساسياً من رؤيته للإصلاح الشامل.",
+                contemplation: "في حياتك، هل توازن بين النجاح المادي والنمو الروحي؟ كيف تستثمر في بناء حياتك الروحية؟",
+                fatherQuote: "من يبني الجدران ويهمل الروح، يبني قبراً جميلاً لحياة ميتة. البناء الحقيقي يبدأ من الداخل",
+                fatherName: "القديس يوحنا الدمشقي"
+            },
+            {
+                verse: "وفرح جميع الجماعة والراجعون من السبي. وفي ذلك اليوم قربوا ذبائح عظيمة وفرحوا لأن الله فرحهم فرحاً عظيماً",
+                reference: "نحميا 12:43",
+                question: "ما هو سر فرح الشعب في النهاية؟",
+                options: [
+                    "إنجاز المشروع في الوقت المحدد",
+                    "الله هو سر فرحهم وسبب نجاحهم",
+                    "الحصول على مكافآت مالية كبيرة",
+                    "انتهاء التعب والمشقة"
+                ],
+                correct: 1,
+                tafseer: "الفرح الحقيقي لا يأتي من الإنجازات المادية وحدها، بل من إدراك أن الله هو الذي بارك وأنجح العمل. هذا الفرح الروحي هو الذي يدوم ويعطي معنى حقيقي للحياة.",
+                contemplation: "ما هو مصدر فرحك الحقيقي؟ هل تفرح بالإنجازات فقط أم بعمل الله في حياتك؟ كيف يمكن أن تجعل الله مصدر فرحك الدائم؟",
+                fatherQuote: "الفرح الذي مصدره الله لا تستطيع ظروف العالم أن تسلبه، لأنه متجذر في الأبدية وليس في الزمن",
+                fatherName: "القديس أثناسيوس الرسولي"
+            },
+            {
+                verse: "فكمل السور في الخامس والعشرين من أيلول، في اثنين وخمسين يوماً",
+                reference: "نحميا 6:15",
+                question: "ما الدرس الأهم من إتمام بناء السور في 52 يوماً؟",
+                options: [
+                    "أهمية السرعة في تنفيذ المشاريع",
+                    "قوة العمل الجماعي المنظم",
+                    "أن الله يبارك العمل المؤسس على الإيمان والصلاة",
+                    "ضرورة وضع جداول زمنية محددة"
+                ],
+                correct: 2,
+                tafseer: "إتمام السور في وقت قياسي رغم كل التحديات يُظهر أن الله يبارك العمل الذي يُبنى على أساس روحي صحيح. الصلاة والإيمان والعمل الجاد معاً يحققون المعجزات.",
+                contemplation: "في مشاريعك وأهدافك، هل تؤسسها على الصلاة والإيمان؟ كيف يمكن أن تدعو الله ليبارك أعمالك ويسرع في إنجازها؟",
+                fatherQuote: "العمل المؤسس على الصلاة والمبني بالإيمان، يحمل بركة السماء ولا تستطيع قوى الأرض أن توقفه",
+                fatherName: "القديس مكاريوس الكبير"
+            }
+        ];
+
+        let currentLessonIndex = 0;
+        let wallProgress = 0;
+        const totalLessons = lessons.length;
+
+        // DOM elements
+        const progressBar = document.getElementById('progressBar');
+        const progressCircle = document.getElementById('progressCircle');
+        const progressPercentage = document.getElementById('progressPercentage');
+        const progressText = document.getElementById('progressText');
+        const welcomeScreen = document.getElementById('welcomeScreen');
+        const lessonSection = document.getElementById('lessonSection');
+        const quizSection = document.getElementById('quizSection');
+        const insightSection = document.getElementById('insightSection');
+        const completionScreen = document.getElementById('completionScreen');
+
+        // Enhanced Realistic Building Sound System
+        let audioContext;
+        
+        function initAudio() {
+            if (!audioContext) {
+                try {
+                    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    if (audioContext.state === 'suspended') {
+                        audioContext.resume();
+                    }
+                } catch (e) {
+                    console.log('Audio not supported');
+                }
+            }
+        }
+
+        function createHammerStrike() {
+            if (!audioContext) return;
+            
+            // Multiple hammer strikes for realism
+            const strikes = [
+                { freq: 1200, time: 0, volume: 0.8 },
+                { freq: 800, time: 0.05, volume: 0.6 },
+                { freq: 400, time: 0.1, volume: 0.4 }
+            ];
+            
+            strikes.forEach(strike => {
+                const osc = audioContext.createOscillator();
+                const gain = audioContext.createGain();
+                const filter = audioContext.createBiquadFilter();
+                
+                osc.connect(filter);
+                filter.connect(gain);
+                gain.connect(audioContext.destination);
+                
+                osc.frequency.setValueAtTime(strike.freq, audioContext.currentTime + strike.time);
+                osc.frequency.exponentialRampToValueAtTime(strike.freq * 0.3, audioContext.currentTime + strike.time + 0.08);
+                osc.type = 'square';
+                
+                filter.type = 'bandpass';
+                filter.frequency.setValueAtTime(strike.freq * 0.8, audioContext.currentTime + strike.time);
+                filter.Q.setValueAtTime(3, audioContext.currentTime + strike.time);
+                
+                gain.gain.setValueAtTime(strike.volume, audioContext.currentTime + strike.time);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + strike.time + 0.15);
+                
+                osc.start(audioContext.currentTime + strike.time);
+                osc.stop(audioContext.currentTime + strike.time + 0.15);
+            });
+        }
+
+        function createStoneChipping() {
+            if (!audioContext) return;
+            
+            // Create realistic stone chipping sound
+            const bufferSize = audioContext.sampleRate * 0.4;
+            const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+            const data = buffer.getChannelData(0);
+            
+            // Generate filtered noise for stone chips
+            for (let i = 0; i < bufferSize; i++) {
+                const t = i / audioContext.sampleRate;
+                const envelope = Math.exp(-t * 8); // Decay envelope
+                const noise = (Math.random() * 2 - 1) * envelope;
+                const crackle = Math.sin(t * 2000 + Math.random() * 10) * envelope * 0.3;
+                data[i] = (noise + crackle) * 0.5;
+            }
+            
+            const source = audioContext.createBufferSource();
+            source.buffer = buffer;
+            
+            const filter = audioContext.createBiquadFilter();
+            const gain = audioContext.createGain();
+            
+            source.connect(filter);
+            filter.connect(gain);
+            gain.connect(audioContext.destination);
+            
+            filter.type = 'bandpass';
+            filter.frequency.setValueAtTime(600, audioContext.currentTime + 0.1);
+            filter.Q.setValueAtTime(2, audioContext.currentTime + 0.1);
+            
+            gain.gain.setValueAtTime(0.6, audioContext.currentTime + 0.1);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.5);
+            
+            source.start(audioContext.currentTime + 0.1);
+        }
+
+        function createMortarScraping() {
+            if (!audioContext) return;
+            
+            // Realistic mortar scraping with texture
+            const osc1 = audioContext.createOscillator();
+            const osc2 = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            const filter = audioContext.createBiquadFilter();
+            const lfo = audioContext.createOscillator();
+            const lfoGain = audioContext.createGain();
+            
+            // Main scraping sound
+            osc1.frequency.setValueAtTime(180, audioContext.currentTime + 0.3);
+            osc1.frequency.linearRampToValueAtTime(120, audioContext.currentTime + 1.2);
+            osc1.type = 'sawtooth';
+            
+            // Texture layer
+            osc2.frequency.setValueAtTime(90, audioContext.currentTime + 0.3);
+            osc2.frequency.linearRampToValueAtTime(60, audioContext.currentTime + 1.2);
+            osc2.type = 'square';
+            
+            // LFO for texture variation
+            lfo.frequency.setValueAtTime(8, audioContext.currentTime + 0.3);
+            lfo.type = 'sine';
+            lfoGain.gain.setValueAtTime(20, audioContext.currentTime + 0.3);
+            
+            lfo.connect(lfoGain);
+            lfoGain.connect(osc1.frequency);
+            
+            osc1.connect(filter);
+            osc2.connect(filter);
+            filter.connect(gain);
+            gain.connect(audioContext.destination);
+            
+            filter.type = 'lowpass';
+            filter.frequency.setValueAtTime(400, audioContext.currentTime + 0.3);
+            filter.frequency.linearRampToValueAtTime(200, audioContext.currentTime + 1.2);
+            
+            gain.gain.setValueAtTime(0, audioContext.currentTime + 0.3);
+            gain.gain.linearRampToValueAtTime(0.4, audioContext.currentTime + 0.5);
+            gain.gain.linearRampToValueAtTime(0.3, audioContext.currentTime + 1.0);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 1.2);
+            
+            lfo.start(audioContext.currentTime + 0.3);
+            osc1.start(audioContext.currentTime + 0.3);
+            osc2.start(audioContext.currentTime + 0.3);
+            
+            lfo.stop(audioContext.currentTime + 1.2);
+            osc1.stop(audioContext.currentTime + 1.2);
+            osc2.stop(audioContext.currentTime + 1.2);
+        }
+
+        function createAmbientEcho() {
+            if (!audioContext) return;
+            
+            // Create ambient construction site echo
+            const delay = audioContext.createDelay(2.0);
+            const feedback = audioContext.createGain();
+            const wetGain = audioContext.createGain();
+            const filter = audioContext.createBiquadFilter();
+            
+            // Echo parameters
+            delay.delayTime.setValueAtTime(0.3, audioContext.currentTime + 1.5);
+            feedback.gain.setValueAtTime(0.3, audioContext.currentTime + 1.5);
+            wetGain.gain.setValueAtTime(0.2, audioContext.currentTime + 1.5);
+            
+            filter.type = 'lowpass';
+            filter.frequency.setValueAtTime(800, audioContext.currentTime + 1.5);
+            
+            // Create echo source
+            const echoOsc = audioContext.createOscillator();
+            const echoGain = audioContext.createGain();
+            
+            echoOsc.frequency.setValueAtTime(300, audioContext.currentTime + 1.5);
+            echoOsc.frequency.exponentialRampToValueAtTime(80, audioContext.currentTime + 2.5);
+            echoOsc.type = 'triangle';
+            
+            echoGain.gain.setValueAtTime(0.15, audioContext.currentTime + 1.5);
+            echoGain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 2.5);
+            
+            echoOsc.connect(echoGain);
+            echoGain.connect(delay);
+            delay.connect(feedback);
+            feedback.connect(delay);
+            delay.connect(filter);
+            filter.connect(wetGain);
+            wetGain.connect(audioContext.destination);
+            
+            echoOsc.start(audioContext.currentTime + 1.5);
+            echoOsc.stop(audioContext.currentTime + 2.5);
+        }
+
+        function createRealisticBuildingSound() {
+            initAudio();
+            if (!audioContext) return;
+            
+            try {
+                // Sequence of realistic construction sounds
+                createHammerStrike();
+                
+                setTimeout(() => createHammerStrike(), 200);
+                setTimeout(() => createHammerStrike(), 400);
+                
+                createStoneChipping();
+                createMortarScraping();
+                createAmbientEcho();
+                
+            } catch (e) {
+                console.log('Audio playback failed:', e);
+            }
+        }
+
+        function playBuildingSound() {
+            createRealisticBuildingSound();
+            createDustParticles();
+        }
+
+        // Enable audio on first user interaction
+        function enableAudio() {
+            initAudio();
+            if (audioContext && audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+        }
+
+        // Add click listeners to enable audio
+        document.addEventListener('click', enableAudio, { once: true });
+        document.addEventListener('touchstart', enableAudio, { once: true });
+
+        function createDustParticles() {
+            const wallArea = document.querySelector('.wall-section');
+            if (!wallArea) return;
+            
+            for (let i = 0; i < 5; i++) {
+                const dust = document.createElement('div');
+                dust.className = 'building-dust';
+                dust.style.left = Math.random() * 100 + '%';
+                dust.style.animationDelay = Math.random() * 0.5 + 's';
+                wallArea.appendChild(dust);
+                
+                setTimeout(() => {
+                    if (dust.parentNode) {
+                        dust.parentNode.removeChild(dust);
+                    }
+                }, 2000);
+            }
+        }
+
+        function createBrickPattern(wallElement) {
+            const brickContainer = wallElement.querySelector('.brick-pattern');
+            if (!brickContainer) return;
+            
+            brickContainer.innerHTML = '';
+            
+            // Create brick rows
+            for (let row = 0; row < 8; row++) {
+                const brickRow = document.createElement('div');
+                brickRow.className = 'brick-row';
+                brickRow.style.bottom = (row * 12) + 'px';
+                
+                // Alternate brick pattern
+                if (row % 2 === 0) {
+                    brickRow.style.background = 'linear-gradient(135deg, #8b7355, #6b5b47, #8b7355)';
+                } else {
+                    brickRow.style.background = 'linear-gradient(135deg, #7a6344, #5a4a3a, #7a6344)';
+                }
+                
+                brickContainer.appendChild(brickRow);
+                
+                // Add mortar lines
+                if (row < 7) {
+                    const mortarLine = document.createElement('div');
+                    mortarLine.className = 'mortar-line';
+                    mortarLine.style.bottom = ((row + 1) * 12 - 1) + 'px';
+                    mortarLine.style.height = '2px';
+                    mortarLine.style.width = '100%';
+                    brickContainer.appendChild(mortarLine);
+                }
+                
+                // Add vertical mortar lines
+                for (let brick = 1; brick < 3; brick++) {
+                    const verticalMortar = document.createElement('div');
+                    verticalMortar.className = 'mortar-line';
+                    verticalMortar.style.bottom = (row * 12) + 'px';
+                    verticalMortar.style.height = '12px';
+                    verticalMortar.style.width = '2px';
+                    verticalMortar.style.left = (brick * 33.33) + '%';
+                    brickContainer.appendChild(verticalMortar);
+                }
+            }
+        }
+
+        // Event listeners
+        document.getElementById('startBuilding').addEventListener('click', startJourney);
+        document.getElementById('proceedToQuiz').addEventListener('click', showQuiz);
+        document.getElementById('continueBuilding').addEventListener('click', nextLesson);
+        document.getElementById('restartJourney').addEventListener('click', restartJourney);
+        document.getElementById('shareWisdom').addEventListener('click', shareWisdom);
+
+        function startJourney() {
+            welcomeScreen.classList.add('hidden');
+            showLesson();
+        }
+
+        function showLesson() {
+            if (currentLessonIndex >= totalLessons) {
+                showCompletion();
+                return;
+            }
+
+            const lesson = lessons[currentLessonIndex];
+            
+            // Hide other sections
+            quizSection.classList.add('hidden');
+            insightSection.classList.add('hidden');
+            
+            // Show lesson
+            lessonSection.classList.remove('hidden');
+            document.getElementById('currentVerse').textContent = lesson.verse;
+            document.getElementById('currentReference').textContent = lesson.reference;
+        }
+
+        function showQuiz() {
+            const lesson = lessons[currentLessonIndex];
+            
+            lessonSection.classList.add('hidden');
+            quizSection.classList.remove('hidden');
+            
+            document.getElementById('quizQuestion').textContent = lesson.question;
+            
+            const optionsContainer = document.getElementById('quizOptions');
+            optionsContainer.innerHTML = '';
+            
+            lesson.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.className = 'quiz-option w-full p-5 bg-gradient-to-r from-indigo-600 via-blue-600 to-indigo-600 hover:from-indigo-700 hover:via-blue-700 hover:to-indigo-700 rounded-xl text-right font-semibold text-lg border border-indigo-400';
+                button.textContent = option;
+                button.addEventListener('click', () => checkAnswer(index));
+                optionsContainer.appendChild(button);
+            });
+        }
+
+        function showSuccessNotification(message, isCorrect = true) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `fixed top-4 left-1/2 transform -translate-x-1/2 z-50 px-6 py-4 rounded-xl font-bold text-lg shadow-2xl transition-all duration-500 ${
+                isCorrect 
+                    ? 'bg-gradient-to-r from-green-500 to-green-600 text-white' 
+                    : 'bg-gradient-to-r from-red-500 to-red-600 text-white'
+            }`;
+            notification.style.transform = 'translateX(-50%) translateY(-100px)';
+            notification.style.opacity = '0';
+            
+            notification.innerHTML = `
+                <div class="flex items-center space-x-3 space-x-reverse">
+                    <div class="text-2xl">${isCorrect ? '🎉' : '💪'}</div>
+                    <div>${message}</div>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.style.transform = 'translateX(-50%) translateY(0)';
+                notification.style.opacity = '1';
+            }, 100);
+            
+            // Animate out
+            setTimeout(() => {
+                notification.style.transform = 'translateX(-50%) translateY(-100px)';
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 500);
+            }, 3000);
+        }
+
+        function scrollToWall() {
+            const wallSection = document.querySelector('.glass-card:has(.wall-section)');
+            if (wallSection) {
+                wallSection.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'center' 
+                });
+            }
+        }
+
+        function scrollToInsight() {
+            const insightSection = document.getElementById('insightSection');
+            if (insightSection && !insightSection.classList.contains('hidden')) {
+                insightSection.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+            }
+        }
+
+        function scrollToNextLesson() {
+            const lessonSection = document.getElementById('lessonSection');
+            if (lessonSection && !lessonSection.classList.contains('hidden')) {
+                lessonSection.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+            }
+        }
+
+        function checkAnswer(selectedIndex) {
+            const lesson = lessons[currentLessonIndex];
+            const options = document.querySelectorAll('.quiz-option');
+            const feedback = document.getElementById('quizFeedback');
+            
+            // Disable all options
+            options.forEach(option => option.disabled = true);
+            
+            if (selectedIndex === lesson.correct) {
+                // Correct answer
+                options[selectedIndex].classList.add('correct-answer');
+                
+                // Show success notification
+                showSuccessNotification('إجابة ممتازة! جاري بناء جزء من السور... 🏗️', true);
+                
+                feedback.innerHTML = `
+                    <div class="text-green-300 font-bold text-xl mb-3">✅ إجابة ممتازة!</div>
+                    <p class="text-lg text-gray-200">أحسنت! جاري بناء جزء من السور...</p>
+                    <div class="mt-4 flex justify-center">
+                        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-green-400"></div>
+                    </div>
+                `;
+                feedback.classList.remove('hidden');
+                
+                setTimeout(() => {
+                    // Scroll to wall before building
+                    scrollToWall();
+                    
+                    setTimeout(() => {
+                        buildWallSection();
+                        
+                        // Show building completion notification
+                        setTimeout(() => {
+                            showSuccessNotification('تم بناء جزء جديد من السور بنجاح! 🎯', true);
+                        }, 1000);
+                        
+                        setTimeout(() => {
+                            showInsight();
+                            
+                            // Auto-scroll to insight section after building
+                            setTimeout(() => {
+                                scrollToInsight();
+                            }, 500);
+                        }, 2000);
+                    }, 800);
+                }, 1500);
+                
+            } else {
+                // Wrong answer
+                options[selectedIndex].classList.add('wrong-answer');
+                options[lesson.correct].classList.add('correct-answer');
+                
+                // Show encouragement notification
+                showSuccessNotification('لا بأس! التعلم يحدث من خلال المحاولة 💪', false);
+                
+                feedback.innerHTML = `
+                    <div class="text-red-300 font-bold text-xl mb-3">❌ ليس بعد!</div>
+                    <p class="text-lg text-gray-200 mb-2">الإجابة الصحيحة: ${lesson.options[lesson.correct]}</p>
+                    <p class="text-gray-300">لا بأس، التعلم يحدث من خلال المحاولة. جاري بناء جزء من السور...</p>
+                    <div class="mt-4 flex justify-center">
+                        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-yellow-400"></div>
+                    </div>
+                `;
+                feedback.classList.remove('hidden');
+                
+                setTimeout(() => {
+                    // Scroll to wall before building
+                    scrollToWall();
+                    
+                    setTimeout(() => {
+                        buildWallSection();
+                        
+                        // Show building completion notification
+                        setTimeout(() => {
+                            showSuccessNotification('تم بناء جزء جديد من السور! 🏗️', true);
+                        }, 1000);
+                        
+                        setTimeout(() => {
+                            showInsight();
+                            
+                            // Auto-scroll to insight section after building
+                            setTimeout(() => {
+                                scrollToInsight();
+                            }, 500);
+                        }, 2000);
+                    }, 800);
+                }, 2000);
+            }
+        }
+
+        function showInsight() {
+            const lesson = lessons[currentLessonIndex];
+            
+            quizSection.classList.add('hidden');
+            insightSection.classList.remove('hidden');
+            
+            // Populate insight content
+            document.getElementById('tafseerContent').textContent = lesson.tafseer;
+            document.getElementById('contemplationContent').textContent = lesson.contemplation;
+            document.getElementById('fatherQuote').textContent = lesson.fatherQuote;
+            document.getElementById('fatherName').textContent = `- ${lesson.fatherName}`;
+        }
+
+        function nextLesson() {
+            currentLessonIndex++;
+            insightSection.classList.add('hidden');
+            
+            if (currentLessonIndex < totalLessons) {
+                showLesson();
+                
+                // Auto-scroll to next lesson after a short delay
+                setTimeout(() => {
+                    scrollToNextLesson();
+                }, 300);
+            } else {
+                showCompletion();
+                
+                // Auto-scroll to completion screen
+                setTimeout(() => {
+                    const completionScreen = document.getElementById('completionScreen');
+                    if (completionScreen && !completionScreen.classList.contains('hidden')) {
+                        completionScreen.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'start' 
+                        });
+                    }
+                }, 300);
+            }
+        }
+
+        function buildWallSection() {
+            wallProgress++;
+            updateProgress();
+            
+            // Play building sound
+            playBuildingSound();
+            
+            // Show building notification
+            const buildingMessages = [
+                "🔨 بناء الأساس الأول...",
+                "🧱 إضافة الطوب الثاني...", 
+                "⚒️ تقوية الجدار الثالث...",
+                "🏗️ بناء الجزء الرابع...",
+                "🚪 بناء البوابة المقدسة...",
+                "🔧 إكمال الجزء السادس...",
+                "⛏️ تشييد الجزء السابع...",
+                "🪨 وضع الحجارة الثامنة...",
+                "🔨 بناء الجزء التاسع...",
+                "✨ إتمام السور المقدس!"
+            ];
+            
+            if (wallProgress <= buildingMessages.length) {
+                setTimeout(() => {
+                    showSuccessNotification(buildingMessages[wallProgress - 1], true);
+                }, 500);
+            }
+            
+            if (wallProgress <= 10) {
+                const wallElement = document.getElementById(`wall${wallProgress}`);
+                if (wallElement) {
+                    wallElement.style.height = '100px';
+                    wallElement.style.opacity = '1';
+                    wallElement.classList.add('wall-built', 'hammer-strike');
+                    
+                    // Create realistic brick pattern
+                    createBrickPattern(wallElement);
+                    
+                    setTimeout(() => {
+                        wallElement.classList.remove('hammer-strike');
+                    }, 300);
+                }
+            }
+            
+            // Special handling for gate
+            if (wallProgress === 5) {
+                const gateElement = document.getElementById('gate');
+                gateElement.style.height = '120px';
+                gateElement.style.opacity = '1';
+                gateElement.classList.add('gate-built');
+                
+                setTimeout(() => {
+                    document.getElementById('gateLight').style.opacity = '1';
+                    document.getElementById('gateArch').style.opacity = '1';
+                    showSuccessNotification('🚪 تم فتح البوابة المقدسة! نور الله يضيء الطريق ✨', true);
+                }, 800);
+            }
+            
+            // Show cross and completion text when wall is complete
+            if (wallProgress >= totalLessons) {
+                setTimeout(() => {
+                    document.getElementById('orthodoxCross').style.opacity = '1';
+                    document.getElementById('wallCompletionText').style.opacity = '1';
+                    
+                    // Final completion notification
+                    setTimeout(() => {
+                        showSuccessNotification('🎉 مبروك! تم إكمال سور أورشليم بنعمة الله! ☦️', true);
+                    }, 500);
+                }, 1500);
+            }
+        }
+
+        function updateProgress() {
+            const percentage = Math.round((wallProgress / totalLessons) * 100);
+            progressBar.style.width = `${percentage}%`;
+            progressPercentage.textContent = `${percentage}%`;
+            
+            // Update circular progress
+            const circumference = 2 * Math.PI * 52;
+            const offset = circumference - (percentage / 100) * circumference;
+            progressCircle.style.strokeDashoffset = offset;
+            
+            const messages = [
+                "استعد لبدء رحلتك الروحية",
+                "بداية قوية - غيرة مقدسة 🔥",
+                "تقدم ممتاز - رجل صلاة 🙏",
+                "قوة في المواجهة - ثقة بالله 💪",
+                "قيادة حكيمة - عمل جماعي 👥",
+                "البوابة تفتح - حكمة وحذر ⚖️",
+                "قدوة في العمل - قيادة بالمثال 🌟",
+                "نجاح بالله - شهادة للعالم ✨",
+                "روحانية عميقة - كلمة الله 📖",
+                "فرح بالله - إتمام المهمة 🎉",
+                "مكتمل! السور قائم بنعمة الله 🏗️"
+            ];
+            
+            progressText.textContent = messages[wallProgress] || messages[0];
+        }
+
+        function showCompletion() {
+            insightSection.classList.add('hidden');
+            completionScreen.classList.remove('hidden');
+        }
+
+        function restartJourney() {
+            currentLessonIndex = 0;
+            wallProgress = 0;
+            resetWall();
+            updateProgress();
+            
+            completionScreen.classList.add('hidden');
+            welcomeScreen.classList.remove('hidden');
+        }
+
+        function shareWisdom() {
+            const shareText = `لقد أكملت رحلة "هلم فنبني" الروحية مع نحميا في يوم العزاب والعازبات السادس! 🏗️✨\n\nتعلمت دروساً عميقة في:\n• الغيرة المقدسة 🔥\n• قوة الصلاة 🙏\n• القيادة الحكيمة 👑\n• المثابرة في العمل 💪\n\n"فكمل السور في الخامس والعشرين من أيلول، في اثنين وخمسين يوماً" - نحميا 6:15\n\n#هلم_فنبني #نحميا #يوم_العزاب_والعازبات #القيادة_الروحية`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'هلم فنبني - رحلة روحية',
+                    text: shareText
+                });
+            } else {
+                navigator.clipboard.writeText(shareText).then(() => {
+                    alert('تم نسخ النص للمشاركة! 📋');
+                });
+            }
+        }
+
+        function resetWall() {
+            // Reset all wall sections
+            for (let i = 1; i <= 10; i++) {
+                const wall = document.getElementById(`wall${i}`);
+                if (wall) {
+                    wall.style.height = '0px';
+                    wall.style.opacity = '0.3';
+                    wall.classList.remove('wall-built', 'hammer-strike');
+                    const brickPattern = wall.querySelector('.brick-pattern');
+                    if (brickPattern) {
+                        brickPattern.innerHTML = '';
+                    }
+                }
+            }
+            
+            // Reset gate
+            const gate = document.getElementById('gate');
+            gate.style.height = '0px';
+            gate.style.opacity = '0.3';
+            gate.classList.remove('gate-built');
+            
+            // Reset special elements
+            document.getElementById('gateLight').style.opacity = '0';
+            document.getElementById('gateArch').style.opacity = '0';
+            document.getElementById('orthodoxCross').style.opacity = '0';
+            document.getElementById('wallCompletionText').style.opacity = '0';
+        }
+
+        // Initialize
+        updateProgress();
+    </script>
+</body>
+</html>
+
