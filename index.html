@@ -479,100 +479,14 @@
             75% { transform: translateY(-5px) rotate(270deg); opacity: 0.7; }
         }
 
-        .mbg-logo {
-            position: fixed;
-            top: 25px;
-            left: 25px;
-            z-index: 1000;
-            cursor: pointer;
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
-            transform-origin: center;
-        }
 
-        .mbg-logo:hover {
-            transform: translateY(-5px) scale(1.08) rotate(2deg);
-            filter: drop-shadow(0 12px 25px rgba(0, 0, 0, 0.5));
-        }
-
-        .mbg-logo img {
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 50%;
-            box-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
-        }
-
-        .mbg-logo:hover img {
-            box-shadow: 0 0 30px rgba(251, 191, 36, 0.6);
-            transform: rotate(-2deg);
-        }
-
-        .mbg-main-text {
-            font-family: 'Cairo', sans-serif;
-            font-weight: 900;
-            font-size: 32px;
-            background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 2px;
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            position: relative;
-        }
-
-        .mbg-main-text::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
-            border-radius: 8px;
-            z-index: -1;
-            opacity: 0.1;
-        }
-
-        .mbg-subtitle {
-            font-family: 'Cairo', sans-serif;
-            font-weight: 700;
-            font-size: 12px;
-            color: #e5e7eb;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-align: center;
-            position: relative;
-            padding: 4px 0;
-        }
-
-        .mbg-subtitle::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #fbbf24, transparent);
-        }
-
-        .mbg-logo-container {
-            text-align: center;
-            position: relative;
-        }
 
 
     </style>
 </head>
 <body class="min-h-screen text-white">
-    <!-- MBG Logo -->
-    <div class="mbg-logo" title="Saint Mary and Saint Beshoy Group">
-        <img src="mbglogo.png" alt="MBG Logo" class="w-20 h-20 object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-        <div class="mbg-logo-container" style="display: none;">
-            <div class="mbg-main-text">MBG</div>
-            <div class="mbg-subtitle">Saudi Arabia</div>
-        </div>
-    </div>
+
+
     <div class="container mx-auto px-4 py-6 max-w-6xl">
         <!-- Header -->
         <div class="text-center mb-8">
@@ -619,10 +533,37 @@
             </div>
         </div>
 
+        <!-- Name Input Screen (First Screen) -->
+        <div id="initialNameScreen" class="glass-card rounded-2xl p-8 mb-8 text-center">
+            <div class="text-6xl mb-6 floating-animation">👋</div>
+            <h2 class="text-3xl font-bold mb-6 text-yellow-300 amiri-font">إزيك! يلا بينا في رحلة حلوة</h2>
+            <div class="verse-highlight rounded-xl p-6 mb-6">
+                <p class="text-xl leading-relaxed mb-3 amiri-font">
+                    "إن إله السماء يعطينا النجاح، ونحن عبيده نقوم ونبني"
+                </p>
+                <p class="text-blue-300 font-semibold">نحميا ٢:٢٠</p>
+            </div>
+            <p class="text-lg mb-6 text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                اكتب اسمك عشان نناديك بيه في كل خطوة بتبني فيها السور! 😊
+            </p>
+            <div class="max-w-md mx-auto mb-6">
+                <input 
+                    type="text" 
+                    id="playerName" 
+                    placeholder="اكتب اسمك هنا..." 
+                    class="w-full p-4 text-xl text-center bg-gradient-to-r from-indigo-900/50 to-blue-900/50 border-2 border-yellow-400/30 rounded-xl text-white placeholder-gray-400 focus:border-yellow-400 focus:outline-none amiri-font"
+                    maxlength="20"
+                >
+            </div>
+            <button id="startWithName" class="bg-gradient-to-r from-yellow-500 via-yellow-600 to-yellow-700 hover:from-yellow-600 hover:via-yellow-700 hover:to-yellow-800 px-10 py-4 rounded-xl font-bold text-black text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed">
+                يلا نبدأ الرحلة 🚀
+            </button>
+        </div>
+
         <!-- Welcome Screen -->
-        <div id="welcomeScreen" class="glass-card rounded-2xl p-8 mb-8 text-center">
+        <div id="welcomeScreen" class="glass-card rounded-2xl p-8 mb-8 text-center hidden">
             <div class="text-6xl mb-6 floating-animation">🏗️</div>
-            <h2 class="text-3xl font-bold mb-6 text-yellow-300 amiri-font">أهلاً وسهلاً بيك في رحلة البناء الروحي</h2>
+            <h2 class="text-3xl font-bold mb-6 text-yellow-300 amiri-font">إزيك يا <span id="welcomeName" class="text-yellow-400"></span>! يلا بينا نبني</h2>
             <div class="verse-highlight rounded-xl p-6 mb-6">
                 <p class="text-xl leading-relaxed mb-3 amiri-font">
                     "فقلت لهم: أنتم ترون البلية التي نحن فيها، كيف أن أورشليم خربة وأبوابها محروقة بالنار. هلم فنبني سور أورشليم ولا نكون بعد عاراً"
@@ -810,13 +751,44 @@
                     <div class="text-2xl font-bold text-yellow-300 mb-2 amiri-font">تم بناء السور بنعمة الله</div>
                     <div class="text-lg text-blue-200">نحميا 6:15</div>
                 </div>
+
+                <!-- Builder Name on Wall -->
+                <div id="builderNameOnWall" class="absolute bottom-32 left-1/2 transform -translate-x-1/2 text-center opacity-0 transition-all duration-2000">
+                    <div class="bg-gradient-to-r from-yellow-400/90 via-yellow-300/90 to-yellow-400/90 px-6 py-3 rounded-xl border-2 border-yellow-500 shadow-2xl">
+                        <div class="text-3xl font-bold text-black mb-2 amiri-font" id="displayBuilderName"></div>
+                        <div class="text-lg font-bold text-gray-800 amiri-font">هلم فنبني</div>
+                        <div class="text-sm font-semibold text-gray-700">يوم العزاب والعازبات السادس</div>
+                        <div class="text-sm font-semibold text-gray-700">٢٦ سبتمبر ٢٠٢٥</div>
+                    </div>
+                </div>
             </div>
+        </div>
+
+        <!-- Name Input Screen -->
+        <div id="nameInputScreen" class="glass-card rounded-2xl p-10 text-center hidden">
+            <div class="text-6xl mb-6 floating-animation">🏗️</div>
+            <h2 class="text-3xl font-bold mb-6 text-yellow-300 amiri-font">مبروووك يا <span id="completionName" class="text-yellow-400"></span>! خلصت بناء السور</h2>
+            <p class="text-lg mb-6 text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                دلوقتي اكتب اسمك عشان يتكتب على السور كذكرى جميلة لرحلتك الروحية مع نحميا
+            </p>
+            <div class="max-w-md mx-auto mb-6">
+                <input 
+                    type="text" 
+                    id="builderName" 
+                    placeholder="اكتب اسمك هنا..." 
+                    class="w-full p-4 text-xl text-center bg-gradient-to-r from-indigo-900/50 to-blue-900/50 border-2 border-yellow-400/30 rounded-xl text-white placeholder-gray-400 focus:border-yellow-400 focus:outline-none amiri-font"
+                    maxlength="20"
+                >
+            </div>
+            <button id="addNameToWall" class="bg-gradient-to-r from-yellow-500 via-yellow-600 to-yellow-700 hover:from-yellow-600 hover:via-yellow-700 hover:to-yellow-800 px-10 py-4 rounded-xl font-bold text-black text-xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed">
+                اكتب اسمي على السور ✍️
+            </button>
         </div>
 
         <!-- Completion Screen -->
         <div id="completionScreen" class="glass-card rounded-2xl p-10 text-center hidden">
             <div class="text-8xl mb-6 celebration">🎉</div>
-            <h2 class="text-4xl font-bold mb-6 text-yellow-300 amiri-font">مبروووك! خلصنا السور كله</h2>
+            <h2 class="text-4xl font-bold mb-6 text-yellow-300 amiri-font">مبروووك يا <span id="finalCompletionName" class="text-yellow-400"></span>! خلصنا السور كله</h2>
             <div class="verse-highlight rounded-xl p-6 mb-6">
                 <p class="text-xl leading-relaxed mb-3 amiri-font">
                     "فكمل السور في الخامس والعشرين من أيلول، في اثنين وخمسين يوماً"
@@ -826,7 +798,10 @@
             <p class="text-lg mb-8 text-gray-300 max-w-3xl mx-auto leading-relaxed">
                 إحنا اتعلمنا مع نحميا حاجات كتير مهمة عن القيادة والإيمان والصبر. الحاجات دي هتساعدك تبني "أسوار" النجاح والإيمان في حياتك وشغلك. متنساش أبداً: بالصلاة والشغل والإيمان، مفيش حاجة مستحيلة.
             </p>
-            <div class="flex justify-center space-x-4 space-x-reverse">
+            <div class="flex justify-center space-x-4 space-x-reverse flex-wrap gap-4">
+                <button id="downloadWallPhoto" class="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 px-8 py-4 rounded-xl font-bold text-xl transition-all duration-300 transform hover:scale-105">
+                    حمل صورة السور باسمك 📸
+                </button>
                 <button id="restartJourney" class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 px-8 py-4 rounded-xl font-bold text-xl transition-all duration-300 transform hover:scale-105">
                     يلا نبدأ رحلة جديدة 🔄
                 </button>
@@ -1244,6 +1219,27 @@
         document.addEventListener('click', enableAudio, { once: true });
         document.addEventListener('touchstart', enableAudio, { once: true });
 
+        function setPlayerName() {
+            const nameInput = document.getElementById('playerName');
+            const name = nameInput.value.trim();
+            
+            if (!name) {
+                alert('من فضلك اكتب اسمك عشان نقدر نناديك بيه! 😊');
+                nameInput.focus();
+                return;
+            }
+            
+            playerName = name;
+            document.getElementById('welcomeName').textContent = playerName;
+            
+            // Hide initial name screen and show welcome screen
+            document.getElementById('initialNameScreen').classList.add('hidden');
+            document.getElementById('welcomeScreen').classList.remove('hidden');
+            
+            // Show personalized welcome notification
+            showSuccessNotification(`أهلاً وسهلاً يا ${playerName}! يلا نبدأ رحلة البناء الروحية 🎉`, true);
+        }
+
         function createDustParticles() {
             const wallArea = document.querySelector('.wall-section');
             if (!wallArea) return;
@@ -1307,12 +1303,25 @@
             }
         }
 
+        // Global variable for player name
+        let playerName = '';
+
         // Event listeners
+        document.getElementById('startWithName').addEventListener('click', setPlayerName);
         document.getElementById('startBuilding').addEventListener('click', startJourney);
         document.getElementById('proceedToQuiz').addEventListener('click', showQuiz);
         document.getElementById('continueBuilding').addEventListener('click', nextLesson);
+        document.getElementById('addNameToWall').addEventListener('click', addNameToWall);
+        document.getElementById('downloadWallPhoto').addEventListener('click', downloadWallPhoto);
         document.getElementById('restartJourney').addEventListener('click', restartJourney);
         document.getElementById('shareWisdom').addEventListener('click', shareWisdom);
+
+        // Handle Enter key for name input
+        document.getElementById('playerName').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                setPlayerName();
+            }
+        });
 
         function startJourney() {
             welcomeScreen.classList.add('hidden');
@@ -1438,7 +1447,7 @@
                 options[selectedIndex].classList.add('correct-answer');
                 
                 // Show success notification
-                showSuccessNotification('إجابة تحفة! هنبني دلوقتي جزء من السور... 🏗️', true);
+                showSuccessNotification(`برافو يا ${playerName}! إجابة تحفة! هنبني دلوقتي جزء من السور... 🏗️`, true);
                 
                 feedback.innerHTML = `
                     <div class="text-green-300 font-bold text-xl mb-3">✅ إجابة تحفة!</div>
@@ -1458,7 +1467,7 @@
                         
                         // Show building completion notification
                         setTimeout(() => {
-                            showSuccessNotification('تم بناء جزء جديد من السور بنجاح! 🎯', true);
+                            showSuccessNotification(`ممتاز يا ${playerName}! تم بناء جزء جديد من السور بنجاح! 🎯`, true);
                         }, 1000);
                         
                         setTimeout(() => {
@@ -1478,7 +1487,7 @@
                 options[lesson.correct].classList.add('correct-answer');
                 
                 // Show encouragement notification
-                showSuccessNotification('مش مشكلة! إحنا بنتعلم من المحاولة 💪', false);
+                showSuccessNotification(`مش مشكلة يا ${playerName}! إحنا بنتعلم من المحاولة 💪`, false);
                 
                 feedback.innerHTML = `
                     <div class="text-red-300 font-bold text-xl mb-3">❌ مش كده!</div>
@@ -1499,7 +1508,7 @@
                         
                         // Show building completion notification
                         setTimeout(() => {
-                            showSuccessNotification('تم بناء جزء جديد من السور! 🏗️', true);
+                            showSuccessNotification(`أحسنت يا ${playerName}! تم بناء جزء جديد من السور! 🏗️`, true);
                         }, 1000);
                         
                         setTimeout(() => {
@@ -1565,16 +1574,16 @@
             
             // Show building notification
             const buildingMessages = [
-                "🔨 بنبني الأساس الأول...",
-                "🧱 حاطين الطوب التاني...", 
-                "⚒️ بنقوي الحيطة التالتة...",
-                "🏗️ بنبني الجزء الرابع...",
-                "🚪 بنبني البوابة المقدسة...",
-                "🔧 بنكمل الجزء السادس...",
-                "⛏️ بنشيد الجزء السابع...",
-                "🪨 حاطين الحجارة التامنة...",
-                "🔨 بنبني الجزء التاسع...",
-                "✨ خلصنا السور المقدس!"
+                `🔨 يلا يا ${playerName}، بنبني الأساس الأول...`,
+                `🧱 ممتاز يا ${playerName}! حاطين الطوب التاني...`, 
+                `⚒️ برافو يا ${playerName}! بنقوي الحيطة التالتة...`,
+                `🏗️ أحسنت يا ${playerName}! بنبني الجزء الرابع...`,
+                `🚪 رائع يا ${playerName}! بنبني البوابة المقدسة...`,
+                `🔧 عظيم يا ${playerName}! بنكمل الجزء السادس...`,
+                `⛏️ تحفة يا ${playerName}! بنشيد الجزء السابع...`,
+                `🪨 ممتاز يا ${playerName}! حاطين الحجارة التامنة...`,
+                `🔨 أحسنت يا ${playerName}! بنبني الجزء التاسع...`,
+                `✨ مبروك يا ${playerName}! خلصنا السور المقدس!`
             ];
             
             if (wallProgress <= buildingMessages.length) {
@@ -1609,7 +1618,7 @@
                 setTimeout(() => {
                     document.getElementById('gateLight').style.opacity = '1';
                     document.getElementById('gateArch').style.opacity = '1';
-                    showSuccessNotification('🚪 تم فتح البوابة المقدسة! نور الله يضيء الطريق ✨', true);
+                    showSuccessNotification(`🚪 رائع يا ${playerName}! تم فتح البوابة المقدسة! نور الله يضيء الطريق ✨`, true);
                 }, 800);
             }
             
@@ -1621,7 +1630,7 @@
                     
                     // Final completion notification
                     setTimeout(() => {
-                        showSuccessNotification('🎉 مبروك! تم إكمال سور أورشليم بنعمة الله! ☦️', true);
+                        showSuccessNotification(`🎉 مبروك يا ${playerName}! تم إكمال سور أورشليم بنعمة الله! ☦️`, true);
                     }, 500);
                 }, 1500);
             }
@@ -1638,17 +1647,17 @@
             progressCircle.style.strokeDashoffset = offset;
             
             const messages = [
-                "استعد للرحلة الروحية الحلوة دي",
-                "بداية قوية - غيرة مقدسة 🔥",
-                "تقدم رائع - راجل صلاة 🙏",
-                "قوة في المواجهة - ثقة في ربنا 💪",
-                "قيادة حكيمة - شغل جماعي 👥",
-                "البوابة بتفتح - حكمة وحذر ⚖️",
-                "قدوة في الشغل - قيادة بالمثال 🌟",
-                "نجاح بربنا - شهادة للعالم ✨",
-                "روحانية عميقة - كلام ربنا 📖",
-                "فرح بربنا - خلصنا المهمة 🎉",
-                "مكتمل! السور قايم بنعمة ربنا 🏗️"
+                `استعد يا ${playerName} للرحلة الروحية الحلوة دي`,
+                `برافو يا ${playerName}! بداية قوية - غيرة مقدسة 🔥`,
+                `ممتاز يا ${playerName}! تقدم رائع - راجل صلاة 🙏`,
+                `أحسنت يا ${playerName}! قوة في المواجهة - ثقة في ربنا 💪`,
+                `رائع يا ${playerName}! قيادة حكيمة - شغل جماعي 👥`,
+                `عظيم يا ${playerName}! البوابة بتفتح - حكمة وحذر ⚖️`,
+                `تحفة يا ${playerName}! قدوة في الشغل - قيادة بالمثال 🌟`,
+                `ممتاز يا ${playerName}! نجاح بربنا - شهادة للعالم ✨`,
+                `أحسنت يا ${playerName}! روحانية عميقة - كلام ربنا 📖`,
+                `برافو يا ${playerName}! فرح بربنا - خلصنا المهمة 🎉`,
+                `مبروك يا ${playerName}! مكتمل! السور قايم بنعمة ربنا 🏗️`
             ];
             
             progressText.textContent = messages[wallProgress] || messages[0];
@@ -1656,17 +1665,249 @@
 
         function showCompletion() {
             insightSection.classList.add('hidden');
-            completionScreen.classList.remove('hidden');
+            
+            // Show name input screen first and populate with player name
+            const nameInputScreen = document.getElementById('nameInputScreen');
+            document.getElementById('completionName').textContent = playerName;
+            nameInputScreen.classList.remove('hidden');
+            
+            // Auto-scroll to name input
+            setTimeout(() => {
+                nameInputScreen.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+            }, 300);
+        }
+
+        function addNameToWall() {
+            const nameInput = document.getElementById('builderName');
+            const name = nameInput.value.trim();
+            
+            if (!name) {
+                alert('من فضلك اكتب اسمك الأول! 😊');
+                nameInput.focus();
+                return;
+            }
+            
+            // Display name on wall
+            document.getElementById('displayBuilderName').textContent = name;
+            document.getElementById('builderNameOnWall').style.opacity = '1';
+            
+            // Show success notification
+            showSuccessNotification(`🎉 تم كتابة اسم "${name}" على السور المقدس! `, true);
+            
+            // Hide name input and show completion screen
+            setTimeout(() => {
+                document.getElementById('nameInputScreen').classList.add('hidden');
+                document.getElementById('finalCompletionName').textContent = name;
+                document.getElementById('completionScreen').classList.remove('hidden');
+                
+                // Auto-scroll to completion screen
+                setTimeout(() => {
+                    document.getElementById('completionScreen').scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                }, 300);
+            }, 2000);
+        }
+
+        function downloadWallPhoto() {
+            // Create a canvas to capture the wall
+            const wallContainer = document.querySelector('.glass-card:has(.wall-section)');
+            
+            // Use html2canvas library functionality (simplified version)
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Set canvas size
+            canvas.width = 800;
+            canvas.height = 600;
+            
+            // Create gradient background
+            const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            gradient.addColorStop(0, '#0f172a');
+            gradient.addColorStop(0.3, '#1e1b4b');
+            gradient.addColorStop(0.6, '#312e81');
+            gradient.addColorStop(1, '#581c87');
+            
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Add stars
+            ctx.fillStyle = '#fbbf24';
+            for (let i = 0; i < 20; i++) {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * (canvas.height * 0.4);
+                const size = Math.random() * 3 + 1;
+                ctx.beginPath();
+                ctx.arc(x, y, size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            
+            // Add moon
+            ctx.fillStyle = '#fef3c7';
+            ctx.beginPath();
+            ctx.arc(canvas.width - 80, 60, 30, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Add ground
+            const groundGradient = ctx.createLinearGradient(0, canvas.height - 80, 0, canvas.height);
+            groundGradient.addColorStop(0, '#92400e');
+            groundGradient.addColorStop(0.5, '#a16207');
+            groundGradient.addColorStop(1, '#92400e');
+            
+            ctx.fillStyle = groundGradient;
+            ctx.fillRect(0, canvas.height - 80, canvas.width, 80);
+            
+            // Draw wall sections
+            const wallWidth = 60;
+            const wallHeight = 120;
+            const wallY = canvas.height - 80 - wallHeight;
+            const totalWallWidth = wallWidth * 10;
+            const startX = (canvas.width - totalWallWidth) / 2;
+            
+            for (let i = 0; i < 10; i++) {
+                const x = startX + (i * wallWidth);
+                
+                // Wall gradient
+                const wallGradient = ctx.createLinearGradient(x, wallY, x, wallY + wallHeight);
+                wallGradient.addColorStop(0, '#6b7280');
+                wallGradient.addColorStop(0.5, '#4b5563');
+                wallGradient.addColorStop(1, '#374151');
+                
+                ctx.fillStyle = wallGradient;
+                ctx.fillRect(x, wallY, wallWidth - 2, wallHeight);
+                
+                // Wall border
+                ctx.strokeStyle = '#9ca3af';
+                ctx.lineWidth = 2;
+                ctx.strokeRect(x, wallY, wallWidth - 2, wallHeight);
+                
+                // Add brick pattern
+                ctx.strokeStyle = '#6b7280';
+                ctx.lineWidth = 1;
+                for (let row = 0; row < 8; row++) {
+                    const brickY = wallY + wallHeight - (row * 15) - 15;
+                    ctx.beginPath();
+                    ctx.moveTo(x, brickY);
+                    ctx.lineTo(x + wallWidth - 2, brickY);
+                    ctx.stroke();
+                }
+            }
+            
+            // Add gate (middle section)
+            const gateX = startX + (4 * wallWidth);
+            const gateGradient = ctx.createLinearGradient(gateX, wallY - 20, gateX, wallY + wallHeight);
+            gateGradient.addColorStop(0, '#d97706');
+            gateGradient.addColorStop(0.5, '#b45309');
+            gateGradient.addColorStop(1, '#92400e');
+            
+            ctx.fillStyle = gateGradient;
+            ctx.fillRect(gateX, wallY - 20, wallWidth * 2, wallHeight + 20);
+            
+            // Gate border
+            ctx.strokeStyle = '#f59e0b';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(gateX, wallY - 20, wallWidth * 2, wallHeight + 20);
+            
+            // Add gate arch
+            ctx.fillStyle = '#451a03';
+            ctx.beginPath();
+            ctx.arc(gateX + wallWidth, wallY + wallHeight - 20, 25, 0, Math.PI, true);
+            ctx.fill();
+            
+            // Add cross
+            ctx.fillStyle = '#fbbf24';
+            ctx.font = 'bold 40px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('☦️', canvas.width / 2, 100);
+            
+            // Add title
+            ctx.fillStyle = '#fbbf24';
+            ctx.font = 'bold 36px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('هلم فنبني', canvas.width / 2, 160);
+            
+            // Add builder name
+            const builderName = document.getElementById('displayBuilderName').textContent;
+            if (builderName) {
+                // Name background
+                const nameWidth = ctx.measureText(builderName).width + 40;
+                const nameX = (canvas.width - nameWidth) / 2;
+                const nameY = canvas.height - 200;
+                
+                const nameGradient = ctx.createLinearGradient(nameX, nameY, nameX + nameWidth, nameY + 60);
+                nameGradient.addColorStop(0, '#fbbf24');
+                nameGradient.addColorStop(0.5, '#f59e0b');
+                nameGradient.addColorStop(1, '#fbbf24');
+                
+                ctx.fillStyle = nameGradient;
+                ctx.fillRect(nameX, nameY, nameWidth, 60);
+                
+                // Name border
+                ctx.strokeStyle = '#d97706';
+                ctx.lineWidth = 3;
+                ctx.strokeRect(nameX, nameY, nameWidth, 60);
+                
+                // Builder name text
+                ctx.fillStyle = '#000000';
+                ctx.font = 'bold 28px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText(builderName, canvas.width / 2, nameY + 35);
+                
+                // Event details
+                ctx.fillStyle = '#1f2937';
+                ctx.font = 'bold 14px Arial';
+                ctx.fillText('يوم العزاب والعازبات السادس', canvas.width / 2, nameY + 50);
+                ctx.fillText('٢٦ سبتمبر ٢٠٢٥', canvas.width / 2, nameY + 65);
+            }
+            
+            // Add completion text
+            ctx.fillStyle = '#60a5fa';
+            ctx.font = 'bold 20px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('تم بناء السور بنعمة الله', canvas.width / 2, canvas.height - 120);
+            
+            ctx.font = '16px Arial';
+            ctx.fillText('نحميا 6:15', canvas.width / 2, canvas.height - 100);
+            
+            // Download the image
+            canvas.toBlob(function(blob) {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `سور-أورشليم-${builderName || 'باني'}.png`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                showSuccessNotification('تم تحميل صورة السور بنجاح! 📸', true);
+            }, 'image/png');
         }
 
         function restartJourney() {
             currentLessonIndex = 0;
             wallProgress = 0;
+            playerName = '';
             resetWall();
             updateProgress();
             
+            // Hide all screens
+            document.getElementById('nameInputScreen').classList.add('hidden');
             completionScreen.classList.add('hidden');
-            welcomeScreen.classList.remove('hidden');
+            welcomeScreen.classList.add('hidden');
+            
+            // Clear name inputs and displays
+            document.getElementById('playerName').value = '';
+            document.getElementById('builderName').value = '';
+            document.getElementById('displayBuilderName').textContent = '';
+            document.getElementById('builderNameOnWall').style.opacity = '0';
+            
+            // Show initial name screen
+            document.getElementById('initialNameScreen').classList.remove('hidden');
         }
 
         function shareWisdom() {
@@ -1712,13 +1953,10 @@
             document.getElementById('wallCompletionText').style.opacity = '0';
         }
 
+
+
         // Initialize
         updateProgress();
     </script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'981936a556f2b103',t:'MTc1ODI4NjI3NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
-
-
-
-
-
