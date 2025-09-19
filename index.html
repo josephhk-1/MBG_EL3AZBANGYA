@@ -14,6 +14,104 @@
             min-height: 100vh;
         }
 
+        /* Enhanced Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem !important;
+            }
+            
+            .text-7xl {
+                font-size: 3rem !important;
+            }
+            
+            .text-4xl {
+                font-size: 2rem !important;
+            }
+            
+            .text-3xl {
+                font-size: 1.75rem !important;
+            }
+            
+            .text-2xl {
+                font-size: 1.5rem !important;
+            }
+            
+            .text-xl {
+                font-size: 1.125rem !important;
+            }
+            
+            .px-10 {
+                padding-left: 1.5rem !important;
+                padding-right: 1.5rem !important;
+            }
+            
+            .py-4 {
+                padding-top: 0.75rem !important;
+                padding-bottom: 0.75rem !important;
+            }
+            
+            .p-8 {
+                padding: 1.5rem !important;
+            }
+            
+            .p-10 {
+                padding: 2rem !important;
+            }
+            
+            .mb-8 {
+                margin-bottom: 1.5rem !important;
+            }
+            
+            .mb-6 {
+                margin-bottom: 1rem !important;
+            }
+            
+            .space-x-4 > * + * {
+                margin-left: 0.75rem !important;
+            }
+            
+            .space-x-reverse > * + * {
+                margin-right: 0.75rem !important;
+                margin-left: 0 !important;
+            }
+            
+            .flex-wrap {
+                gap: 0.75rem !important;
+            }
+            
+            .wall-section {
+                width: 2.5rem !important;
+            }
+            
+            .h-80 {
+                height: 16rem !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .text-7xl {
+                font-size: 2.5rem !important;
+            }
+            
+            .wall-section {
+                width: 2rem !important;
+            }
+            
+            .h-80 {
+                height: 14rem !important;
+            }
+            
+            .px-8 {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+            
+            .py-4 {
+                padding-top: 0.5rem !important;
+                padding-bottom: 0.5rem !important;
+            }
+        }
+
         .amiri-font {
             font-family: 'Amiri', serif;
         }
@@ -802,9 +900,6 @@
                 <button id="downloadWallPhoto" class="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 px-8 py-4 rounded-xl font-bold text-xl transition-all duration-300 transform hover:scale-105">
                     حمل صورة السور باسمك 📸
                 </button>
-                <button id="restartJourney" class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 px-8 py-4 rounded-xl font-bold text-xl transition-all duration-300 transform hover:scale-105">
-                    يلا نبدأ رحلة جديدة 🔄
-                </button>
                 <button id="shareWisdom" class="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 px-8 py-4 rounded-xl font-bold text-xl transition-all duration-300 transform hover:scale-105">
                     شارك الكلام الحلو ده 📤
                 </button>
@@ -1237,7 +1332,7 @@
             document.getElementById('welcomeScreen').classList.remove('hidden');
             
             // Show personalized welcome notification
-            showSuccessNotification(`أهلاً وسهلاً يا ${playerName}! يلا نبدأ رحلة البناء الروحية 🎉`, true);
+            showSuccessNotification(`إزيك يا ${playerName}! يلا نبدأ رحلة البناء الروحية 🎉`, true);
         }
 
         function createDustParticles() {
@@ -1313,7 +1408,7 @@
         document.getElementById('continueBuilding').addEventListener('click', nextLesson);
         document.getElementById('addNameToWall').addEventListener('click', addNameToWall);
         document.getElementById('downloadWallPhoto').addEventListener('click', downloadWallPhoto);
-        document.getElementById('restartJourney').addEventListener('click', restartJourney);
+
         document.getElementById('shareWisdom').addEventListener('click', shareWisdom);
 
         // Handle Enter key for name input
@@ -1714,19 +1809,15 @@
         }
 
         function downloadWallPhoto() {
-            // Create a canvas to capture the wall
-            const wallContainer = document.querySelector('.glass-card:has(.wall-section)');
-            
-            // Use html2canvas library functionality (simplified version)
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
             
-            // Set canvas size
-            canvas.width = 800;
-            canvas.height = 600;
+            // High resolution canvas for better quality
+            canvas.width = 1200;
+            canvas.height = 900;
             
-            // Create gradient background
-            const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            // Enhanced gradient background matching the website
+            const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
             gradient.addColorStop(0, '#0f172a');
             gradient.addColorStop(0.3, '#1e1b4b');
             gradient.addColorStop(0.6, '#312e81');
@@ -1735,180 +1826,291 @@
             ctx.fillStyle = gradient;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
-            // Add stars
+            // Add atmospheric stars with glow effect
+            ctx.shadowColor = '#fbbf24';
+            ctx.shadowBlur = 8;
             ctx.fillStyle = '#fbbf24';
-            for (let i = 0; i < 20; i++) {
+            
+            const starPositions = [
+                {x: 100, y: 80, size: 4}, {x: 200, y: 120, size: 3}, {x: 350, y: 90, size: 2},
+                {x: 500, y: 110, size: 3}, {x: 650, y: 70, size: 4}, {x: 800, y: 130, size: 2},
+                {x: 950, y: 85, size: 3}, {x: 1100, y: 105, size: 4}, {x: 150, y: 160, size: 2},
+                {x: 300, y: 140, size: 3}, {x: 750, y: 160, size: 2}, {x: 1000, y: 140, size: 3}
+            ];
+            
+            starPositions.forEach(star => {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            
+            ctx.shadowBlur = 0;
+            
+            // Enhanced moon with glow
+            ctx.shadowColor = '#fef3c7';
+            ctx.shadowBlur = 20;
+            ctx.fillStyle = '#fef3c7';
+            ctx.beginPath();
+            ctx.arc(canvas.width - 120, 100, 40, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+            
+            // Realistic ground with texture
+            const groundGradient = ctx.createLinearGradient(0, canvas.height - 120, 0, canvas.height);
+            groundGradient.addColorStop(0, '#92400e');
+            groundGradient.addColorStop(0.3, '#a16207');
+            groundGradient.addColorStop(0.7, '#b45309');
+            groundGradient.addColorStop(1, '#92400e');
+            
+            ctx.fillStyle = groundGradient;
+            ctx.fillRect(0, canvas.height - 120, canvas.width, 120);
+            
+            // Add ground texture
+            ctx.fillStyle = 'rgba(139, 69, 19, 0.3)';
+            for (let i = 0; i < 50; i++) {
                 const x = Math.random() * canvas.width;
-                const y = Math.random() * (canvas.height * 0.4);
+                const y = canvas.height - 120 + Math.random() * 120;
                 const size = Math.random() * 3 + 1;
                 ctx.beginPath();
                 ctx.arc(x, y, size, 0, Math.PI * 2);
                 ctx.fill();
             }
             
-            // Add moon
-            ctx.fillStyle = '#fef3c7';
-            ctx.beginPath();
-            ctx.arc(canvas.width - 80, 60, 30, 0, Math.PI * 2);
-            ctx.fill();
-            
-            // Add ground
-            const groundGradient = ctx.createLinearGradient(0, canvas.height - 80, 0, canvas.height);
-            groundGradient.addColorStop(0, '#92400e');
-            groundGradient.addColorStop(0.5, '#a16207');
-            groundGradient.addColorStop(1, '#92400e');
-            
-            ctx.fillStyle = groundGradient;
-            ctx.fillRect(0, canvas.height - 80, canvas.width, 80);
-            
-            // Draw wall sections
-            const wallWidth = 60;
-            const wallHeight = 120;
-            const wallY = canvas.height - 80 - wallHeight;
+            // Enhanced wall sections with realistic stone texture
+            const wallWidth = 90;
+            const wallHeight = 180;
+            const wallY = canvas.height - 120 - wallHeight;
             const totalWallWidth = wallWidth * 10;
             const startX = (canvas.width - totalWallWidth) / 2;
             
             for (let i = 0; i < 10; i++) {
                 const x = startX + (i * wallWidth);
                 
-                // Wall gradient
+                // Enhanced wall gradient with stone colors
                 const wallGradient = ctx.createLinearGradient(x, wallY, x, wallY + wallHeight);
-                wallGradient.addColorStop(0, '#6b7280');
-                wallGradient.addColorStop(0.5, '#4b5563');
-                wallGradient.addColorStop(1, '#374151');
+                wallGradient.addColorStop(0, '#8b7355');
+                wallGradient.addColorStop(0.3, '#6b5b47');
+                wallGradient.addColorStop(0.7, '#5a4a3a');
+                wallGradient.addColorStop(1, '#4a3f35');
                 
                 ctx.fillStyle = wallGradient;
-                ctx.fillRect(x, wallY, wallWidth - 2, wallHeight);
+                ctx.fillRect(x, wallY, wallWidth - 3, wallHeight);
                 
-                // Wall border
-                ctx.strokeStyle = '#9ca3af';
+                // Enhanced wall border with depth
+                ctx.strokeStyle = '#a0916b';
+                ctx.lineWidth = 3;
+                ctx.strokeRect(x, wallY, wallWidth - 3, wallHeight);
+                
+                // Detailed brick pattern
+                ctx.strokeStyle = '#6b5b47';
                 ctx.lineWidth = 2;
-                ctx.strokeRect(x, wallY, wallWidth - 2, wallHeight);
-                
-                // Add brick pattern
-                ctx.strokeStyle = '#6b7280';
-                ctx.lineWidth = 1;
-                for (let row = 0; row < 8; row++) {
+                for (let row = 0; row < 12; row++) {
                     const brickY = wallY + wallHeight - (row * 15) - 15;
                     ctx.beginPath();
                     ctx.moveTo(x, brickY);
-                    ctx.lineTo(x + wallWidth - 2, brickY);
+                    ctx.lineTo(x + wallWidth - 3, brickY);
                     ctx.stroke();
+                    
+                    // Vertical mortar lines
+                    if (row % 2 === 0) {
+                        ctx.beginPath();
+                        ctx.moveTo(x + (wallWidth - 3) / 3, brickY);
+                        ctx.lineTo(x + (wallWidth - 3) / 3, brickY + 15);
+                        ctx.stroke();
+                        
+                        ctx.beginPath();
+                        ctx.moveTo(x + 2 * (wallWidth - 3) / 3, brickY);
+                        ctx.lineTo(x + 2 * (wallWidth - 3) / 3, brickY + 15);
+                        ctx.stroke();
+                    } else {
+                        ctx.beginPath();
+                        ctx.moveTo(x + (wallWidth - 3) / 6, brickY);
+                        ctx.lineTo(x + (wallWidth - 3) / 6, brickY + 15);
+                        ctx.stroke();
+                        
+                        ctx.beginPath();
+                        ctx.moveTo(x + (wallWidth - 3) / 2, brickY);
+                        ctx.lineTo(x + (wallWidth - 3) / 2, brickY + 15);
+                        ctx.stroke();
+                        
+                        ctx.beginPath();
+                        ctx.moveTo(x + 5 * (wallWidth - 3) / 6, brickY);
+                        ctx.lineTo(x + 5 * (wallWidth - 3) / 6, brickY + 15);
+                        ctx.stroke();
+                    }
+                }
+                
+                // Add stone texture
+                ctx.fillStyle = 'rgba(160, 145, 107, 0.2)';
+                for (let j = 0; j < 8; j++) {
+                    const stoneX = x + Math.random() * (wallWidth - 3);
+                    const stoneY = wallY + Math.random() * wallHeight;
+                    const stoneSize = Math.random() * 2 + 1;
+                    ctx.beginPath();
+                    ctx.arc(stoneX, stoneY, stoneSize, 0, Math.PI * 2);
+                    ctx.fill();
                 }
             }
             
-            // Add gate (middle section)
+            // Enhanced gate with golden details
             const gateX = startX + (4 * wallWidth);
-            const gateGradient = ctx.createLinearGradient(gateX, wallY - 20, gateX, wallY + wallHeight);
-            gateGradient.addColorStop(0, '#d97706');
+            const gateGradient = ctx.createLinearGradient(gateX, wallY - 30, gateX, wallY + wallHeight);
+            gateGradient.addColorStop(0, '#f59e0b');
+            gateGradient.addColorStop(0.2, '#d97706');
             gateGradient.addColorStop(0.5, '#b45309');
-            gateGradient.addColorStop(1, '#92400e');
+            gateGradient.addColorStop(0.8, '#92400e');
+            gateGradient.addColorStop(1, '#78350f');
             
             ctx.fillStyle = gateGradient;
-            ctx.fillRect(gateX, wallY - 20, wallWidth * 2, wallHeight + 20);
+            ctx.fillRect(gateX, wallY - 30, wallWidth * 2, wallHeight + 30);
             
-            // Gate border
-            ctx.strokeStyle = '#f59e0b';
-            ctx.lineWidth = 3;
-            ctx.strokeRect(gateX, wallY - 20, wallWidth * 2, wallHeight + 20);
+            // Enhanced gate border with golden glow
+            ctx.shadowColor = '#fbbf24';
+            ctx.shadowBlur = 10;
+            ctx.strokeStyle = '#fbbf24';
+            ctx.lineWidth = 4;
+            ctx.strokeRect(gateX, wallY - 30, wallWidth * 2, wallHeight + 30);
+            ctx.shadowBlur = 0;
             
-            // Add gate arch
+            // Gate arch with depth
             ctx.fillStyle = '#451a03';
             ctx.beginPath();
-            ctx.arc(gateX + wallWidth, wallY + wallHeight - 20, 25, 0, Math.PI, true);
+            ctx.arc(gateX + wallWidth, wallY + wallHeight - 30, 35, 0, Math.PI, true);
             ctx.fill();
             
-            // Add cross
-            ctx.fillStyle = '#fbbf24';
-            ctx.font = 'bold 40px Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText('☦️', canvas.width / 2, 100);
+            ctx.strokeStyle = '#78350f';
+            ctx.lineWidth = 3;
+            ctx.stroke();
             
-            // Add title
+            // Gate light with glow effect
+            ctx.shadowColor = '#fbbf24';
+            ctx.shadowBlur = 15;
             ctx.fillStyle = '#fbbf24';
-            ctx.font = 'bold 36px Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText('هلم فنبني', canvas.width / 2, 160);
+            ctx.beginPath();
+            ctx.arc(gateX + wallWidth, wallY + 40, 15, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.shadowBlur = 0;
             
-            // Add builder name
+            // Enhanced cross with divine glow
+            ctx.shadowColor = '#fbbf24';
+            ctx.shadowBlur = 25;
+            ctx.fillStyle = '#fbbf24';
+            ctx.font = 'bold 60px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('☦️', canvas.width / 2, 150);
+            ctx.shadowBlur = 0;
+            
+            // Enhanced title with gradient text effect
+            const titleGradient = ctx.createLinearGradient(0, 200, canvas.width, 200);
+            titleGradient.addColorStop(0, '#fbbf24');
+            titleGradient.addColorStop(0.5, '#f59e0b');
+            titleGradient.addColorStop(1, '#fbbf24');
+            
+            ctx.fillStyle = titleGradient;
+            ctx.font = 'bold 48px Arial';
+            ctx.textAlign = 'center';
+            ctx.strokeStyle = '#92400e';
+            ctx.lineWidth = 2;
+            ctx.strokeText('هلم فنبني', canvas.width / 2, 220);
+            ctx.fillText('هلم فنبني', canvas.width / 2, 220);
+            
+            // Enhanced builder name section
             const builderName = document.getElementById('displayBuilderName').textContent;
             if (builderName) {
-                // Name background
-                const nameWidth = ctx.measureText(builderName).width + 40;
+                // Measure text for proper sizing
+                ctx.font = 'bold 36px Arial';
+                const nameMetrics = ctx.measureText(builderName);
+                const nameWidth = nameMetrics.width + 80;
+                const nameHeight = 100;
                 const nameX = (canvas.width - nameWidth) / 2;
-                const nameY = canvas.height - 200;
+                const nameY = canvas.height - 280;
                 
-                const nameGradient = ctx.createLinearGradient(nameX, nameY, nameX + nameWidth, nameY + 60);
+                // Enhanced name background with multiple gradients
+                const nameGradient = ctx.createLinearGradient(nameX, nameY, nameX + nameWidth, nameY + nameHeight);
                 nameGradient.addColorStop(0, '#fbbf24');
-                nameGradient.addColorStop(0.5, '#f59e0b');
+                nameGradient.addColorStop(0.2, '#f59e0b');
+                nameGradient.addColorStop(0.5, '#d97706');
+                nameGradient.addColorStop(0.8, '#f59e0b');
                 nameGradient.addColorStop(1, '#fbbf24');
                 
                 ctx.fillStyle = nameGradient;
-                ctx.fillRect(nameX, nameY, nameWidth, 60);
+                ctx.fillRect(nameX, nameY, nameWidth, nameHeight);
                 
-                // Name border
-                ctx.strokeStyle = '#d97706';
-                ctx.lineWidth = 3;
-                ctx.strokeRect(nameX, nameY, nameWidth, 60);
+                // Enhanced border with glow
+                ctx.shadowColor = '#fbbf24';
+                ctx.shadowBlur = 8;
+                ctx.strokeStyle = '#92400e';
+                ctx.lineWidth = 4;
+                ctx.strokeRect(nameX, nameY, nameWidth, nameHeight);
+                ctx.shadowBlur = 0;
                 
-                // Builder name text
+                // Corner decorations
+                ctx.fillStyle = '#92400e';
+                const cornerSize = 8;
+                // Top corners
+                ctx.fillRect(nameX - 2, nameY - 2, cornerSize, cornerSize);
+                ctx.fillRect(nameX + nameWidth - cornerSize + 2, nameY - 2, cornerSize, cornerSize);
+                // Bottom corners
+                ctx.fillRect(nameX - 2, nameY + nameHeight - cornerSize + 2, cornerSize, cornerSize);
+                ctx.fillRect(nameX + nameWidth - cornerSize + 2, nameY + nameHeight - cornerSize + 2, cornerSize, cornerSize);
+                
+                // Builder name with shadow effect
                 ctx.fillStyle = '#000000';
-                ctx.font = 'bold 28px Arial';
+                ctx.font = 'bold 36px Arial';
                 ctx.textAlign = 'center';
-                ctx.fillText(builderName, canvas.width / 2, nameY + 35);
+                ctx.strokeStyle = '#ffffff';
+                ctx.lineWidth = 1;
+                ctx.strokeText(builderName, canvas.width / 2, nameY + 45);
+                ctx.fillText(builderName, canvas.width / 2, nameY + 45);
                 
-                // Event details
+                // Event details with better styling
                 ctx.fillStyle = '#1f2937';
-                ctx.font = 'bold 14px Arial';
-                ctx.fillText('يوم العزاب والعازبات السادس', canvas.width / 2, nameY + 50);
-                ctx.fillText('٢٦ سبتمبر ٢٠٢٥', canvas.width / 2, nameY + 65);
+                ctx.font = 'bold 18px Arial';
+                ctx.fillText('يوم العزاب والعازبات السادس', canvas.width / 2, nameY + 70);
+                
+                ctx.font = 'bold 16px Arial';
+                ctx.fillText('٢٦ سبتمبر ٢٠٢٥', canvas.width / 2, nameY + 90);
             }
             
-            // Add completion text
+            // Enhanced completion text with better positioning
             ctx.fillStyle = '#60a5fa';
-            ctx.font = 'bold 20px Arial';
+            ctx.font = 'bold 28px Arial';
             ctx.textAlign = 'center';
-            ctx.fillText('تم بناء السور بنعمة الله', canvas.width / 2, canvas.height - 120);
+            ctx.strokeStyle = '#1e3a8a';
+            ctx.lineWidth = 1;
+            ctx.strokeText('تم بناء السور بنعمة الله', canvas.width / 2, canvas.height - 180);
+            ctx.fillText('تم بناء السور بنعمة الله', canvas.width / 2, canvas.height - 180);
             
-            ctx.font = '16px Arial';
-            ctx.fillText('نحميا 6:15', canvas.width / 2, canvas.height - 100);
+            ctx.fillStyle = '#93c5fd';
+            ctx.font = 'bold 20px Arial';
+            ctx.fillText('نحميا 6:15', canvas.width / 2, canvas.height - 150);
             
-            // Download the image
+            // Add decorative elements
+            ctx.fillStyle = 'rgba(251, 191, 36, 0.3)';
+            ctx.font = '24px Arial';
+            ctx.fillText('✨', 150, 300);
+            ctx.fillText('🏗️', canvas.width - 150, 320);
+            ctx.fillText('⭐', 200, canvas.height - 400);
+            ctx.fillText('💒', canvas.width - 200, canvas.height - 420);
+            
+            // Download with better filename
             canvas.toBlob(function(blob) {
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = `سور-أورشليم-${builderName || 'باني'}.png`;
+                const builderName = document.getElementById('displayBuilderName').textContent;
+                const date = new Date().toLocaleDateString('ar-EG');
+                a.download = `هلم-فنبني-${builderName || 'البناء'}-${date}.png`;
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
                 URL.revokeObjectURL(url);
                 
-                showSuccessNotification('تم تحميل صورة السور بنجاح! 📸', true);
-            }, 'image/png');
+                showSuccessNotification(`تم تحميل صورة السور الجميلة باسم ${builderName}! 🎨📸`, true);
+            }, 'image/png', 0.95);
         }
 
-        function restartJourney() {
-            currentLessonIndex = 0;
-            wallProgress = 0;
-            playerName = '';
-            resetWall();
-            updateProgress();
-            
-            // Hide all screens
-            document.getElementById('nameInputScreen').classList.add('hidden');
-            completionScreen.classList.add('hidden');
-            welcomeScreen.classList.add('hidden');
-            
-            // Clear name inputs and displays
-            document.getElementById('playerName').value = '';
-            document.getElementById('builderName').value = '';
-            document.getElementById('displayBuilderName').textContent = '';
-            document.getElementById('builderNameOnWall').style.opacity = '0';
-            
-            // Show initial name screen
-            document.getElementById('initialNameScreen').classList.remove('hidden');
-        }
+
 
         function shareWisdom() {
             const shareText = `خلصت رحلة "تعالوا نبني" الروحية مع نحميا في يوم العزاب والعازبات السادس! 🏗️✨\n\nاتعلمت حاجات مهمة جداً:\n• الغيرة المقدسة 🔥\n• قوة الصلاة 🙏\n• القيادة الحكيمة 👑\n• الصبر في الشغل 💪\n\n"فكمل السور في الخامس والعشرين من أيلول، في اثنين وخمسين يوماً" - نحميا 6:15\n\n#تعالوا_نبني #نحميا #يوم_العزاب_والعازبات #القيادة_الروحية`;
@@ -1958,5 +2160,5 @@
         // Initialize
         updateProgress();
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'981936a556f2b103',t:'MTc1ODI4NjI3NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'981b61b08685d8f4',t:'MTc1ODMwOTAxMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
